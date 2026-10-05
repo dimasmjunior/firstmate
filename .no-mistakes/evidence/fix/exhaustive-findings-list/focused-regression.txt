@@ -1,0 +1,7 @@
+target: exit 0
+ok - fm-brief.sh: no-mistakes DOD encodes gate decisions as an exhaustive findings list
+
+base: exit 1
+not ok - no-mistakes DOD must state the gate response's exact findings call shape and its exhaustiveness
+
+wait-no-turns enabled: real fm-brief.sh render succeeded; all five decision-contract lines preserved.
