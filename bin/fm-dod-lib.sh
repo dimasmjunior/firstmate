@@ -314,6 +314,10 @@ The \`--intent\` string you pass must be self-sufficient: that string plus the c
 When the captain's intent refers to a report, decision, or PR ("do items 1, 2, 3, and 7 of the report"), write the substance of the referenced items into \`--intent\` in the captain's terms, not only the pointer; that substance is the captain's ask by reference, while Firstmate's build instructions and your own decisions still stay out.
 This replaces the no-mistakes skill's advice to enrich \`--intent\` with decisions and tradeoffs; that advice does not apply to Firstmate-dispatched work.
 Do not hand-edit, commit, or fix findings yourself while a run is active - the pipeline applies every fix.
+Gate response lists are exhaustive: when a decision approves fixes, answer a gate with \`no-mistakes axi respond --action fix --findings <id1,id2,...>\`, listing all and only the findings the decision approves for fixing.
+When a decision approves no fixes, use the action that decision calls for.
+A finding left out of \`--findings\` is recorded as chosen to ignore, not left unchanged, so omitting an approved finding inverts the decision and listing a declined finding authorizes a fix the decision refused.
+After responding, confirm with \`no-mistakes axi status\` what the gate actually recorded, and report the exact command you used.
 
 $drive_block
 A killed or timed-out call is never evidence the daemon died: the daemon accepts your response immediately and runs the round in the background, so the call was only ever waiting for a read while the run kept working.
@@ -322,7 +326,8 @@ Reattach and keep going rather than reporting the pipeline blocked; rule 7 owns 
 Two firstmate-specific rules layer on top of that guidance:
 - ask-user findings are never yours to answer: escalate to firstmate using rule 6's ask-user format and stop.
   Firstmate applies \`ask-user-authority\` and obtains any required captain decision.
-  When the decision comes back, feed it to the gate with \`no-mistakes axi respond\` and let the pipeline apply it - do not route the question to "the user" or implement the fix yourself.
+  When the decision comes back, if it approves fixes, feed it to the gate with \`no-mistakes axi respond --action fix --findings <id1,id2,...>\` with all and only the findings approved for fixing; if it approves no fixes, use the action that decision calls for.
+  Let the pipeline apply the decision - do not route the question to "the user" or implement the fix yourself.
 - NEVER pass \`--yes\` (or \`-y\`) to \`no-mistakes axi run\` or \`no-mistakes axi respond\`. It is banned fleet-wide.
   It auto-resolves every gate including ask-user findings with no escalation, and answering your own ask-user finding is a hard rule violation.
 EOF

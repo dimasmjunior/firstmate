@@ -432,6 +432,42 @@ test_no_mistakes_dod_green_detection() {
   pass "fm-brief.sh: no-mistakes DOD detects a green PR from the drive call, not a status poll"
 }
 
+# A gate response's finding list is exhaustive: a finding left out of
+# `--findings` is recorded as chosen to ignore, not left unchanged, so a
+# partial list (for example one naming only the auto-fix ids while approved
+# ask-user findings are still pending) inverts a decision to fix. The rendered
+# DOD must state the exact call shape, the omission semantics, and the
+# post-response confirmation.
+test_no_mistakes_gate_finding_encoding() {
+  local home id brief
+  home="$TMP_ROOT/gate-encoding-home"
+  mkdir -p "$home/data"
+  id="brief-gate-encoding-e1"
+  FM_HOME="$home" "$ROOT/bin/fm-brief.sh" "$id" some-proj --mode no-mistakes >/dev/null 2>&1
+  brief="$home/data/$id/brief.md"
+  assert_present "$brief" "brief was not scaffolded"
+  # shellcheck disable=SC2016  # single quotes are deliberate: the backticks must stay literal
+  assert_grep 'when a decision approves fixes, answer a gate with `no-mistakes axi respond --action fix --findings <id1,id2,...>`, listing all and only the findings the decision approves for fixing' "$brief" \
+    "no-mistakes DOD must state the gate response's exact findings call shape and its exhaustiveness"
+  assert_grep 'When a decision approves no fixes, use the action that decision calls for' "$brief" \
+    "no-mistakes DOD must preserve the action for decisions approving no fixes"
+  # shellcheck disable=SC2016  # single quotes are deliberate: the backticks must stay literal
+  assert_grep 'A finding left out of `--findings` is recorded as chosen to ignore, not left unchanged' "$brief" \
+    "no-mistakes DOD must state that an omitted finding becomes an ignore decision"
+  # shellcheck disable=SC2016  # single quotes are deliberate: the backticks must stay literal
+  assert_grep 'confirm with `no-mistakes axi status` what the gate actually recorded' "$brief" \
+    "no-mistakes DOD must require confirming what the gate recorded after responding"
+  assert_grep 'report the exact command you used' "$brief" \
+    "no-mistakes DOD must require reporting the exact response command"
+  # shellcheck disable=SC2016  # single quotes are deliberate: the backticks must stay literal
+  assert_grep 'When the decision comes back, if it approves fixes, feed it to the gate with `no-mistakes axi respond --action fix --findings <id1,id2,...>` with all and only the findings approved for fixing; if it approves no fixes, use the action that decision calls for.' "$brief" \
+    "no-mistakes DOD must encode an ask-user decision with the exact findings call shape"
+  # shellcheck disable=SC2016  # single quotes are deliberate: the backticks must stay literal
+  assert_no_grep 'feed it to the gate with `no-mistakes axi respond` and let the pipeline apply it' "$brief" \
+    "no-mistakes DOD still names the gapless respond call without the findings list"
+  pass "fm-brief.sh: no-mistakes DOD encodes gate decisions as an exhaustive findings list"
+}
+
 test_ask_user_escalation_format() {
   local home id brief mode other_id other_brief
   home="$TMP_ROOT/ask-user-home"
@@ -1405,6 +1441,7 @@ test_delivery_flags_are_refused_where_they_do_not_apply
 test_faster_paths_use_configured_authority_without_stacked_review
 test_no_mistakes_dod_wording
 test_no_mistakes_dod_green_detection
+test_no_mistakes_gate_finding_encoding
 test_pr_based_dod_requires_non_draft
 test_ask_user_escalation_format
 test_ship_project_memory_wording
