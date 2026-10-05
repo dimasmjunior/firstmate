@@ -1,0 +1,5 @@
+base: exit=127
+bash: line 1: File: unbound variable
+
+target: exit=0
+beacon_epoch=1700000000 age=91233215
