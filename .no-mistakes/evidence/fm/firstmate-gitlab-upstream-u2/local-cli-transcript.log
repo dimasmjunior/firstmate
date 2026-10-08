@@ -1,0 +1,29 @@
+/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/local-home
+
+REGISTERED POSTURE
+direct-PR on
+gitlab
+topic/
+
+GITLAB BRIEF
+scaffolded: /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/local-home/data/lab-gl/brief.md (ship, mode=direct-PR forge=gitlab; replace {TASK} and {FIRSTMATE_SPEC})
+
+GITHUB NAMED BASE
+scaffolded: /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/local-home/data/lab-gh/brief.md (ship, mode=direct-PR; replace {TASK} and {FIRSTMATE_SPEC})
+
+BOUND NAMED BASE REFUSAL
+error: fm-brief.sh --base-branch: a base branch is not supported on forge=gitlab
+
+GERRIT BRIEF
+scaffolded: /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/local-home/data/lab-gerrit/brief.md (ship, mode=direct-PR forge=gerrit shape=squash; replace {TASK} and {FIRSTMATE_SPEC})
+
+CREDENTIAL-SAFE PROPOSAL
+forge=gitlab evidence=origin host gitlab.example.test names GitLab
+
+GERRIT PRECEDENCE
+forge=gerrit evidence=origin push refspec targets refs/for/
+
+BOOTSTRAP LOCAL DETECTION
+MISSING: gh-axi (install: npm install -g gh-axi && gh-axi setup hooks)
+NEEDS_GH_AUTH
+NEEDS_GLAB_AUTH: gitlab.example.test (run: glab auth login --hostname gitlab.example.test)

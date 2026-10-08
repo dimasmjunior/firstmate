@@ -1,0 +1,44 @@
+Real Firstmate scripts and glab 1.114.0 against a disposable loopback HTTP service. No remote GitLab mutation. Git and Treehouse cleanup used local disposable repositories.
+
+successful-pipeline: exit=0 expected_result=PASS
+optional-absent-pipeline: exit=0 expected_result=PASS
+required-absent-pipeline: exit=1 expected_result=PASS
+policy-missing: exit=1 expected_result=PASS
+policy-string: exit=1 expected_result=PASS
+policy-array: exit=1 expected_result=PASS
+policy-unreadable: exit=1 expected_result=PASS
+green-policy-unreadable: exit=0 expected_result=PASS
+pipeline-failed: exit=1 expected_result=PASS
+pipeline-running: exit=1 expected_result=PASS
+pipeline-stale: exit=1 expected_result=PASS
+pipeline-omitted: exit=0 expected_result=FAIL
+draft-true: exit=1 expected_result=PASS
+draft-null: exit=0 expected_result=FAIL
+draft-string: exit=1 expected_result=PASS
+draft-missing: exit=0 expected_result=FAIL
+arg-auto-merge: exit=1 expected_result=PASS
+arg-when-pipeline-succeeds: exit=1 expected_result=PASS
+arg-sha: exit=1 expected_result=PASS
+arg-repo: exit=1 expected_result=PASS
+outcome-opened: exit=1 expected_result=PASS
+outcome-closed: exit=1 expected_result=PASS
+outcome-unreadable: exit=1 expected_result=PASS
+ready-draft: exit=1 expected_result=PASS
+ready-normal: exit=0 expected_result=PASS
+draft-control-false: exit=0 expected_result=PASS
+draft-repro-null: exit=0 expected_result=FAIL
+draft-repro-missing: exit=0 expected_result=FAIL
+pipeline-control-explicit-null: exit=0 expected_result=PASS
+pipeline-repro-omitted: exit=0 expected_result=FAIL
+attended-modern: exit=0 expected_result=PASS
+attended-legacy: exit=0 expected_result=PASS
+ready-unreadable-optional: exit=0 expected_result=PASS
+away-modern-refusal: exit=2 expected_result=PASS
+away-legacy-refusal: exit=2 expected_result=PASS
+away-synchronous: exit=0 expected_result=PASS
+cleanup-opened: exit=1 metadata_retained=True
+cleanup-merged: exit=0 metadata_retained=False
+cleanup-missing-head: exit=0 metadata_retained=False
+cleanup-unrelated-head: exit=1 metadata_retained=True
+
+Confirmed mismatch: glab mr view serializes API draft=null or absent as false, and absent head_pipeline as null. The merge guard accepts these normalized values and sends PUT /merge. Explicit false draft and explicit null optional pipeline are successful controls.

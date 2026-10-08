@@ -1,0 +1,721 @@
+[
+  {
+    "name": "successful-pipeline",
+    "pass": true,
+    "exit": 0,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"4a15c39ec94ad43c1351b6942f6f42ca50e56eda\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable, with a successful pipeline at head 4a15c39ec94ad43c1351b6942f6f42ca50e56eda\n\u2713 Merged!\nhttps://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      ".wake-queue",
+      ".wake-queue.seq",
+      ".watcher-down",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-merge-notified",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "optional-absent-pipeline",
+    "pass": true,
+    "exit": 0,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"4a15c39ec94ad43c1351b6942f6f42ca50e56eda\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable at head 4a15c39ec94ad43c1351b6942f6f42ca50e56eda; it has no head pipeline, and the project does not require one\n\u2713 Merged!\nhttps://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      ".wake-queue",
+      ".wake-queue.seq",
+      ".watcher-down",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-merge-notified",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "required-absent-pipeline",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - the project requires pipelines to succeed, but the merge request has no head pipeline\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "policy-missing",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - could not read project setting only_allow_merge_if_pipeline_succeeds for https://gitlab.example.test/group/project\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "policy-string",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - could not read project setting only_allow_merge_if_pipeline_succeeds for https://gitlab.example.test/group/project\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "policy-array",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - could not read project setting only_allow_merge_if_pipeline_succeeds for https://gitlab.example.test/group/project\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "policy-unreadable",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - could not read project setting only_allow_merge_if_pipeline_succeeds for https://gitlab.example.test/group/project\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "green-policy-unreadable",
+    "pass": true,
+    "exit": 0,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"4a15c39ec94ad43c1351b6942f6f42ca50e56eda\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable, with a successful pipeline at head 4a15c39ec94ad43c1351b6942f6f42ca50e56eda\n\u2713 Merged!\nhttps://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      ".wake-queue",
+      ".wake-queue.seq",
+      ".watcher-down",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-merge-notified",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "pipeline-failed",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - the head pipeline status is \"failed\", not success\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "pipeline-running",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - the head pipeline status is \"running\", not success\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "pipeline-stale",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - the head pipeline ran at \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\", not at the current head 4a15c39ec94ad43c1351b6942f6f42ca50e56eda\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "pipeline-omitted",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - the head pipeline status is \"none\", not success\n  - the head pipeline ran at \"none\", not at the current head 4a15c39ec94ad43c1351b6942f6f42ca50e56eda\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "draft-true",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - draft is \"true\", not boolean false\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "draft-null",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - draft is \"unreadable\", not boolean false\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "draft-string",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - draft is \"unreadable\", not boolean false\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "draft-missing",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nerror: refusing to merge https://gitlab.example.test/group/project/-/merge_requests/7\n  - draft is \"unreadable\", not boolean false\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "arg-auto-merge",
+    "pass": true,
+    "exit": 1,
+    "requests": [],
+    "output": "error: extra merge arguments must not request auto-merge, a protection bypass, or branch deletion; pass --attended-override only for an explicit captain instruction\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\n",
+    "state_files": [
+      "task-x1.meta"
+    ]
+  },
+  {
+    "name": "arg-when-pipeline-succeeds",
+    "pass": true,
+    "exit": 1,
+    "requests": [],
+    "output": "error: extra merge arguments must not request auto-merge, a protection bypass, or branch deletion; pass --attended-override only for an explicit captain instruction\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\n",
+    "state_files": [
+      "task-x1.meta"
+    ]
+  },
+  {
+    "name": "arg-sha",
+    "pass": true,
+    "exit": 1,
+    "requests": [],
+    "output": "error: extra merge arguments must not override the head commit\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\n",
+    "state_files": [
+      "task-x1.meta"
+    ]
+  },
+  {
+    "name": "arg-repo",
+    "pass": true,
+    "exit": 1,
+    "requests": [],
+    "output": "error: extra merge arguments must not override the repository\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\n",
+    "state_files": [
+      "task-x1.meta"
+    ]
+  },
+  {
+    "name": "outcome-opened",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"4a15c39ec94ad43c1351b6942f6f42ca50e56eda\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable, with a successful pipeline at head 4a15c39ec94ad43c1351b6942f6f42ca50e56eda\nerror: GitLab accepted the merge request for https://gitlab.example.test/group/project/-/merge_requests/7 but it reads back as state=opened, not merged; no landed outcome is proven and the merge poll remains armed\nerror: the merge command's own output follows, quoted; it is the forge CLI's report, not this script's verdict:\nerror: > \u2713 Merged!\nerror: > https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "outcome-closed",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"4a15c39ec94ad43c1351b6942f6f42ca50e56eda\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable, with a successful pipeline at head 4a15c39ec94ad43c1351b6942f6f42ca50e56eda\nerror: GitLab accepted the merge request for https://gitlab.example.test/group/project/-/merge_requests/7 but it reads back as state=closed, not merged; no landed outcome is proven and the merge poll remains armed\nerror: the merge command's own output follows, quoted; it is the forge CLI's report, not this script's verdict:\nerror: > \u2713 Merged!\nerror: > https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "outcome-unreadable",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"4a15c39ec94ad43c1351b6942f6f42ca50e56eda\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable, with a successful pipeline at head 4a15c39ec94ad43c1351b6942f6f42ca50e56eda\nerror: GitLab accepted the merge request for https://gitlab.example.test/group/project/-/merge_requests/7 but its landed state could not be confirmed; the merge poll remains armed\nerror: the merge command's own output follows, quoted; it is the forge CLI's report, not this script's verdict:\nerror: > \u2713 Merged!\nerror: > https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "name": "ready-draft",
+    "pass": true,
+    "exit": 1,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "error: https://gitlab.example.test/group/project/-/merge_requests/7 is a draft merge request; a draft cannot be merged - mark it ready for review and arm again, or declare a wait instead of done if the draft is deliberate\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\n",
+    "state_files": [
+      "task-x1.meta"
+    ]
+  },
+  {
+    "name": "ready-normal",
+    "pass": true,
+    "exit": 0,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision with a foreground checkpoint: bin/fm-watch-checkpoint.sh --seconds 180.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-registration"
+    ]
+  }
+]

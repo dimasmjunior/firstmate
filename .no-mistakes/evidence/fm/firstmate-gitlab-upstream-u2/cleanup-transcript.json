@@ -1,0 +1,86 @@
+[
+  {
+    "head_missing_before": false,
+    "head_present_after": true,
+    "name": "cleanup-opened",
+    "exit": 1,
+    "output": "fm-gate-refuse: gate agent lifecycle permitted only against lab home /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-opened\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nREFUSED: worktree /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-opened/pool/.treehouse/project-64ff3c/1/project has work not on any remote and not landed.\nunpushed commits:\na84b63b work\nPush the branch, land its PR, or get the captain's explicit OK to discard, then --force.\n",
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "meta_retained": true,
+    "backlog": "## In flight\n\n## Queued\n- [ ] task-x1 - Disposable work (repo: project) (kind: ship) (since 2026-10-08)\n\n## Done\n"
+  },
+  {
+    "head_missing_before": false,
+    "head_present_after": true,
+    "name": "cleanup-merged",
+    "exit": 0,
+    "output": "fm-gate-refuse: gate agent lifecycle permitted only against lab home /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-merged\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nA new version of treehouse is available: v3.1.1 \u2192 v3.1.2\nRun \"treehouse update\" to update\n\n\ud83c\udf33 Worktree returned to pool.\nproject: already current\nteardown task-x1 complete (window none, worktree /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-merged/pool/.treehouse/project-727c13/1/project, legacy record accepted without spawn_gen: endpoint missing, incarnation legacy-20261008T131635Z-842379)\nBacklog: task-x1 is closed in /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-merged/data/backlog.md. Run bin/fm-tasks-axi.sh ready for dependency-cleared candidates, check date gates, and dispatch only work whose blockers are gone and date is due.\n",
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "meta_retained": false,
+    "backlog": "## In flight\n\n## Queued\n## Done\n- [x] task-x1 - Disposable work (repo: project) (kind: ship) (done 2026-10-08)\n  GitLab merge request https://gitlab.example.test/group/project/-/merge_requests/7\n"
+  },
+  {
+    "head_missing_before": true,
+    "head_present_after": true,
+    "name": "cleanup-missing-head",
+    "exit": 0,
+    "output": "fm-gate-refuse: gate agent lifecycle permitted only against lab home /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-missing-head\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nA new version of treehouse is available: v3.1.1 \u2192 v3.1.2\nRun \"treehouse update\" to update\n\n\ud83c\udf33 Worktree returned to pool.\nproject: already current\nteardown task-x1 complete (window none, worktree /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-missing-head/pool/.treehouse/project-eabce5/1/project, legacy record accepted without spawn_gen: endpoint missing, incarnation legacy-20261008T131639Z-848054)\nBacklog: task-x1 is closed in /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-missing-head/data/backlog.md. Run bin/fm-tasks-axi.sh ready for dependency-cleared candidates, check date gates, and dispatch only work whose blockers are gone and date is due.\n",
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "meta_retained": false,
+    "backlog": "## In flight\n\n## Queued\n## Done\n- [x] task-x1 - Disposable work (repo: project) (kind: ship) (done 2026-10-08)\n  GitLab merge request https://gitlab.example.test/group/project/-/merge_requests/7\n"
+  },
+  {
+    "head_missing_before": false,
+    "head_present_after": true,
+    "name": "cleanup-unrelated-head",
+    "exit": 1,
+    "output": "fm-gate-refuse: gate agent lifecycle permitted only against lab home /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-unrelated-head\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nREFUSED: worktree /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/cleanup-unrelated-head/pool/.treehouse/project-88ca0b/1/project has work not on any remote and not landed.\nunpushed commits:\neb86df7 work\nPush the branch, land its PR, or get the captain's explicit OK to discard, then --force.\n",
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "meta_retained": true,
+    "backlog": "## In flight\n\n## Queued\n- [ ] task-x1 - Disposable work (repo: project) (kind: ship) (since 2026-10-08)\n\n## Done\n"
+  }
+]

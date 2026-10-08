@@ -1,0 +1,31 @@
+[
+  {
+    "name": "bound-host-authenticated",
+    "exit": 0,
+    "output": "MISSING: gh-axi (install: npm install -g gh-axi && gh-axi setup hooks)\nNEEDS_GH_AUTH\n",
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/user",
+        "body": ""
+      }
+    ]
+  },
+  {
+    "name": "resolved-ssh-alias-authenticated",
+    "exit": 0,
+    "output": "MISSING: gh-axi (install: npm install -g gh-axi && gh-axi setup hooks)\nNEEDS_GH_AUTH\n",
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/user",
+        "body": ""
+      }
+    ]
+  },
+  {
+    "name": "explicit-login-key-preserved",
+    "exit": 0,
+    "output": "lab-alias\n"
+  }
+]

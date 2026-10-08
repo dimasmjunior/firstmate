@@ -1,0 +1,392 @@
+[
+  {
+    "api_input": {
+      "id": 7,
+      "iid": 7,
+      "project_id": 1,
+      "title": "Disposable validation MR",
+      "state": "opened",
+      "user": {
+        "can_merge": true
+      },
+      "draft": false,
+      "detailed_merge_status": "mergeable",
+      "has_conflicts": false,
+      "blocking_discussions_resolved": true,
+      "sha": "0b65398d653581d48ce7155635c3c1d25f85b9fe",
+      "source_branch": "feature",
+      "target_branch": "main",
+      "web_url": "https://gitlab.example.test/group/project/-/merge_requests/7",
+      "head_pipeline": {
+        "id": 1,
+        "sha": "0b65398d653581d48ce7155635c3c1d25f85b9fe",
+        "status": "success"
+      }
+    },
+    "name": "draft-control-false",
+    "pass": true,
+    "exit": 0,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"0b65398d653581d48ce7155635c3c1d25f85b9fe\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable, with a successful pipeline at head 0b65398d653581d48ce7155635c3c1d25f85b9fe\n\u2713 Merged!\nhttps://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      ".wake-queue",
+      ".wake-queue.seq",
+      ".watcher-down",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-merge-notified",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "api_input": {
+      "id": 7,
+      "iid": 7,
+      "project_id": 1,
+      "title": "Disposable validation MR",
+      "state": "opened",
+      "user": {
+        "can_merge": true
+      },
+      "draft": null,
+      "detailed_merge_status": "mergeable",
+      "has_conflicts": false,
+      "blocking_discussions_resolved": true,
+      "sha": "0b65398d653581d48ce7155635c3c1d25f85b9fe",
+      "source_branch": "feature",
+      "target_branch": "main",
+      "web_url": "https://gitlab.example.test/group/project/-/merge_requests/7",
+      "head_pipeline": {
+        "id": 1,
+        "sha": "0b65398d653581d48ce7155635c3c1d25f85b9fe",
+        "status": "success"
+      }
+    },
+    "name": "draft-repro-null",
+    "pass": false,
+    "exit": 0,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject?license=true&with_custom_attributes=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"0b65398d653581d48ce7155635c3c1d25f85b9fe\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject?license=true&with_custom_attributes=true",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable, with a successful pipeline at head 0b65398d653581d48ce7155635c3c1d25f85b9fe\n\u2713 Merged!\nhttps://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      ".wake-queue",
+      ".wake-queue.seq",
+      ".watcher-down",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-merge-notified",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "api_input": {
+      "id": 7,
+      "iid": 7,
+      "project_id": 1,
+      "title": "Disposable validation MR",
+      "state": "opened",
+      "user": {
+        "can_merge": true
+      },
+      "detailed_merge_status": "mergeable",
+      "has_conflicts": false,
+      "blocking_discussions_resolved": true,
+      "sha": "0b65398d653581d48ce7155635c3c1d25f85b9fe",
+      "source_branch": "feature",
+      "target_branch": "main",
+      "web_url": "https://gitlab.example.test/group/project/-/merge_requests/7",
+      "head_pipeline": {
+        "id": 1,
+        "sha": "0b65398d653581d48ce7155635c3c1d25f85b9fe",
+        "status": "success"
+      }
+    },
+    "name": "draft-repro-missing",
+    "pass": false,
+    "exit": 0,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"0b65398d653581d48ce7155635c3c1d25f85b9fe\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable, with a successful pipeline at head 0b65398d653581d48ce7155635c3c1d25f85b9fe\n\u2713 Merged!\nhttps://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      ".wake-queue",
+      ".wake-queue.seq",
+      ".watcher-down",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-merge-notified",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "api_input": {
+      "id": 7,
+      "iid": 7,
+      "project_id": 1,
+      "title": "Disposable validation MR",
+      "state": "opened",
+      "user": {
+        "can_merge": true
+      },
+      "draft": false,
+      "detailed_merge_status": "mergeable",
+      "has_conflicts": false,
+      "blocking_discussions_resolved": true,
+      "sha": "0b65398d653581d48ce7155635c3c1d25f85b9fe",
+      "source_branch": "feature",
+      "target_branch": "main",
+      "web_url": "https://gitlab.example.test/group/project/-/merge_requests/7",
+      "head_pipeline": null
+    },
+    "name": "pipeline-control-explicit-null",
+    "pass": true,
+    "exit": 0,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"0b65398d653581d48ce7155635c3c1d25f85b9fe\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable at head 0b65398d653581d48ce7155635c3c1d25f85b9fe; it has no head pipeline, and the project does not require one\n\u2713 Merged!\nhttps://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      ".wake-queue",
+      ".wake-queue.seq",
+      ".watcher-down",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-merge-notified",
+      "task-x1.pr-poll-registration"
+    ]
+  },
+  {
+    "api_input": {
+      "id": 7,
+      "iid": 7,
+      "project_id": 1,
+      "title": "Disposable validation MR",
+      "state": "opened",
+      "user": {
+        "can_merge": true
+      },
+      "draft": false,
+      "detailed_merge_status": "mergeable",
+      "has_conflicts": false,
+      "blocking_discussions_resolved": true,
+      "sha": "0b65398d653581d48ce7155635c3c1d25f85b9fe",
+      "source_branch": "feature",
+      "target_branch": "main",
+      "web_url": "https://gitlab.example.test/group/project/-/merge_requests/7"
+    },
+    "name": "pipeline-repro-omitted",
+    "pass": false,
+    "exit": 0,
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7",
+        "body": ""
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+        "body": "{\"sha\":\"0b65398d653581d48ce7155635c3c1d25f85b9fe\"}"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state",
+        "body": ""
+      }
+    ],
+    "output": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\narmed: state/task-x1.check.sh\nverified: https://gitlab.example.test/group/project/-/merge_requests/7 is open and mergeable at head 0b65398d653581d48ce7155635c3c1d25f85b9fe; it has no head pipeline, and the project does not require one\n\u2713 Merged!\nhttps://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "meta": "kind=ship\nmode=no-mistakes\nworktree=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nproject=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4DS4Q9EA0N68CM3Q1SX7CMA/.live-validation/repo\nwindow=fm-task-x1\npr=https://gitlab.example.test/group/project/-/merge_requests/7\n",
+    "state_files": [
+      ".guard-watcher-stale-banner",
+      ".wake-queue",
+      ".wake-queue.seq",
+      ".watcher-down",
+      "contributions.check-trust",
+      "contributions.check.sh",
+      "task-x1.check.sh",
+      "task-x1.merge-authority",
+      "task-x1.meta",
+      "task-x1.pr-poll",
+      "task-x1.pr-poll-merge-notified",
+      "task-x1.pr-poll-registration"
+    ]
+  }
+]
