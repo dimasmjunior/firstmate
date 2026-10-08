@@ -1,0 +1,7 @@
+ok - an origin on SSH port 29418 proposes forge=gerrit and names the evidence
+ok - a refs/for/ push refspec proposes forge=gerrit and names the evidence
+ok - a remote carrying neither Gerrit fact proposes forge=none
+ok - an origin host that is or has the label gitlab proposes forge=gitlab
+ok - an origin host configured in glab proposes forge=gitlab, below Gerrit's protocol facts
+ok - detection reads the clone's config and changes nothing
+not ok - a plain directory did not exit 2 (got 0)

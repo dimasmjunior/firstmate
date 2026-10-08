@@ -1,0 +1,14 @@
+Leased worktree: /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/pool/.treehouse/cleanup-cb7c81/1/cleanup
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+WARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.
+A new version of treehouse is available: v3.1.1 → v3.1.2
+Run "treehouse update" to update
+
+🌳 Worktree returned to pool.
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+WARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.
+cleanup: already current
+teardown cleanup-proof complete (window fm-lab-cleanup:fm-cleanup-proof, worktree /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/pool/.treehouse/cleanup-cb7c81/1/cleanup)
+Backlog: cleanup-proof just finished (config/backlog-backend selects manual editing). Update /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/data/backlog.md - move cleanup-proof to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+PASS: confirmed merged GitLab task cleaned up and task record retired.

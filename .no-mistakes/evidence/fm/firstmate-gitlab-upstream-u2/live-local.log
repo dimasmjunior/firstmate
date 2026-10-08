@@ -1,0 +1,27 @@
+/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab
+
+GitLab origin detection:
+forge=gitlab evidence=origin host gitlab.example names GitLab
+
+Explicit binding resolution:
+gitlab
+direct-PR off
+
+Generate GitLab worker brief:
+scaffolded: /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/data/live-check/brief.md (ship, mode=direct-PR forge=gitlab; replace {TASK} and {FIRSTMATE_SPEC})
+
+Reject GitLab local-only contract:
+error: fm-brief.sh --forge: forge=gitlab cannot ship mode=local-only - that mode publishes nothing, so a forge has no meaning there, and its landing would fast-forward local main with content the review server has never seen; ship no-mistakes or direct-PR, which publish through the forge
+
+Reject unattended asynchronous merge arguments:
+error: extra merge arguments must not request auto-merge, a protection bypass, or branch deletion; pass --attended-override only for an explicit captain instruction
+error: extra merge arguments must not request auto-merge, a protection bypass, or branch deletion; pass --attended-override only for an explicit captain instruction
+
+Configured non-GitLab-named host:
+forge=gitlab evidence=origin host forge.example is configured in glab (/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/glab/config.yml)
+
+Unrecognized host is not implicitly bound:
+forge=none
+
+Registry retains explicit GitLab binding:
+gitlab

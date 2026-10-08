@@ -1,0 +1,73 @@
+Disposable project: root/forge-validation-proof
+$ git clone http://127.0.0.1:18080/root/forge-validation-proof.git /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/projects/remote-proof
+Cloning into '/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/projects/remote-proof'...
+exit=0
+$ git -C /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/projects/remote-proof fetch origin
+From http://127.0.0.1:18080/root/forge-validation-proof
+ * [new branch]      draft-live -> origin/draft-live
+exit=0
+$ git -C /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/projects/remote-proof checkout -B draft-live origin/draft-live
+Switched to a new branch 'draft-live'
+branch 'draft-live' set up to track 'origin/draft-live'.
+exit=0
+$ bin/fm-pr-check.sh draft-live https://127.0.0.1/root/forge-validation-proof/-/merge_requests/1
+error: https://127.0.0.1/root/forge-validation-proof/-/merge_requests/1 is a draft merge request; a draft cannot be merged - mark it ready for review and arm again, or declare a wait instead of done if the draft is deliberate
+exit=1
+$ bin/fm-pr-merge.sh draft-live https://127.0.0.1/root/forge-validation-proof/-/merge_requests/1
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+armed: state/draft-live.check.sh
+error: refusing to merge https://127.0.0.1/root/forge-validation-proof/-/merge_requests/1
+  - draft is "true", not boolean false
+  - detailed_merge_status is "draft_status", not mergeable
+exit=1
+$ bin/fm-pr-check.sh draft-live https://127.0.0.1/root/forge-validation-proof/-/merge_requests/1
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+armed: state/draft-live.check.sh
+exit=0
+$ bin/fm-pr-merge.sh draft-live https://127.0.0.1/root/forge-validation-proof/-/merge_requests/1
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+armed: state/draft-live.check.sh
+error: refusing to merge https://127.0.0.1/root/forge-validation-proof/-/merge_requests/1
+  - detailed_merge_status is "ci_must_pass", not mergeable
+  - the project requires pipelines to succeed, but the merge request has no head pipeline
+exit=1
+$ bin/fm-pr-merge.sh draft-live https://127.0.0.1/root/forge-validation-proof/-/merge_requests/1
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+armed: state/draft-live.check.sh
+verified: https://127.0.0.1/root/forge-validation-proof/-/merge_requests/1 is open and mergeable at head 7f44201e19aa82ee1b84b2b355b55cb347ff736f; it has no head pipeline, and the project does not require one
+✓ Merged!
+http://127.0.0.1/root/forge-validation-proof/-/merge_requests/1
+exit=0
+PASS: draft refused; ready accepted; required absent pipeline refused; optional absent pipeline merged.
+$ git -C /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/projects/remote-proof fetch origin
+From http://127.0.0.1:18080/root/forge-validation-proof
+   3fc9a34..fbc92c9  main           -> origin/main
+ * [new branch]      pipeline-check -> origin/pipeline-check
+exit=0
+$ git -C /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/projects/remote-proof checkout -B pipeline-check origin/pipeline-check
+Switched to a new branch 'pipeline-check'
+branch 'pipeline-check' set up to track 'origin/pipeline-check'.
+exit=0
+$ bin/fm-pr-merge.sh pipeline-check https://127.0.0.1/root/forge-validation-proof/-/merge_requests/2
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+WARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.
+armed: state/pipeline-check.check.sh
+error: refusing to merge https://127.0.0.1/root/forge-validation-proof/-/merge_requests/2
+  - the head pipeline status is "pending", not success
+exit=1
+$ bin/fm-pr-merge.sh pipeline-check https://127.0.0.1/root/forge-validation-proof/-/merge_requests/2
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+WARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.
+armed: state/pipeline-check.check.sh
+error: refusing to merge https://127.0.0.1/root/forge-validation-proof/-/merge_requests/2
+  - the head pipeline status is "failed", not success
+exit=1
+$ bin/fm-pr-merge.sh pipeline-check https://127.0.0.1/root/forge-validation-proof/-/merge_requests/2
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+WARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.
+armed: state/pipeline-check.check.sh
+verified: https://127.0.0.1/root/forge-validation-proof/-/merge_requests/2 is open and mergeable, with a successful pipeline at head 099b2dc421d3624ae4fce0315337f2cc9b2e6c1a
+✓ Merged!
+http://127.0.0.1/root/forge-validation-proof/-/merge_requests/2
+exit=0
+PASS: pending and failed pipelines refused; successful current-head pipeline merged.

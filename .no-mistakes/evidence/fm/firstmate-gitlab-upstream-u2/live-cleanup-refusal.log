@@ -1,0 +1,14 @@
+A new version of treehouse is available: v3.1.1 → v3.1.2
+Run "treehouse update" to update
+
+🌳 Setting up worktree...
+🌳 Leased worktree at /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/pool/.treehouse/cleanup-cb7c81/1/cleanup. Run 'treehouse return /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/pool/.treehouse/cleanup-cb7c81/1/cleanup' to release it.
+Leased worktree: /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/pool/.treehouse/cleanup-cb7c81/1/cleanup
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+WARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.
+REFUSED: worktree /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/pool/.treehouse/cleanup-cb7c81/1/cleanup has work not on any remote and not landed.
+unpushed commits:
+59b1e9c unlanded
+Push the branch, land its PR, or get the captain's explicit OK to discard, then --force.
+PASS: unlanded local work with an open GitLab MR refused cleanup; work and task record preserved.

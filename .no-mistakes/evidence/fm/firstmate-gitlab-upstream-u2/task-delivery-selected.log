@@ -1,0 +1,13 @@
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+promoted promote-branch-safe-e3 to ship mode=local-only yolo=off (teardown protection restored)
+wrote ship instructions for mode=local-only: /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/tmp/fm-task-delivery.7tbjtJ/promote-branch-shell-safe/home/data/promote-branch-safe-e3/ship-instructions.md
+next: FM_HOME=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/tmp/fm-task-delivery.7tbjtJ/promote-branch-shell-safe/home bin/fm-send.sh fm-promote-branch-safe-e3 "$(cat /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/tmp/fm-task-delivery.7tbjtJ/promote-branch-shell-safe/home/data/promote-branch-safe-e3/ship-instructions.md)"
+Switched to a new branch '$(touch${IFS}promotion-injection-marker)/promote-branch-safe-e3'
+ok - fm-promote: ref-format-valid shell metacharacters stay literal in promotion branch commands
+ok - forge=gitlab: workers use glab for the merge request, yolo stays available, and the binding is enforced

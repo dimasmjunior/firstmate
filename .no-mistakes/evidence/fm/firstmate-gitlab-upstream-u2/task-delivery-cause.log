@@ -1,0 +1,2 @@
+error: --branch-prefix and task id must form a valid git branch (got '$(touch${IFS}/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/tmp/fm-task-delivery.hyLYFS/promote-branch-shell-safe-marker)/promote-branch-safe-e3')
+not ok - a ref-format-valid metacharacter prefix should promote safely

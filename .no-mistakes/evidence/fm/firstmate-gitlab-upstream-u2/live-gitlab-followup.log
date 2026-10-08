@@ -1,0 +1,85 @@
+$ git -C /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/projects/remote-proof fetch origin
+From http://127.0.0.1:18080/root/forge-validation-proof
+   fbc92c9..ce8bc6c  main           -> origin/main
+ * [new branch]      stale-pipeline -> origin/stale-pipeline
+exit=0
+$ git -C /home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4E5BXCPYW0JYWKJE3S12BYB/.test-validation/lab/projects/remote-proof checkout -B stale-pipeline origin/stale-pipeline
+Switched to a new branch 'stale-pipeline'
+branch 'stale-pipeline' set up to track 'origin/stale-pipeline'.
+exit=0
+{
+  "sha": "2e31330f1f9f32d6b3b20eec62b9b1da2e9862b2",
+  "head_pipeline": {
+    "id": 2,
+    "iid": 2,
+    "project_id": 4,
+    "sha": "6097ab7ed657f62d30416540099e19a1daaa5769",
+    "ref": "stale-pipeline",
+    "status": "success",
+    "source": "external",
+    "created_at": "2026-10-08T16:47:43.592Z",
+    "updated_at": "2026-10-08T16:47:44.028Z",
+    "web_url": "http://127.0.0.1/root/forge-validation-proof/-/pipelines/2",
+    "before_sha": "0000000000000000000000000000000000000000",
+    "tag": false,
+    "yaml_errors": null,
+    "user": {
+      "id": 1,
+      "username": "root",
+      "public_email": null,
+      "name": "Administrator",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://www.gravatar.com/avatar/bf41b7df3aeec55c9cdeb5d8d18c4032bd9b5690e0667ecc18ad9be74a374155?s=80&d=identicon",
+      "web_url": "http://127.0.0.1/root"
+    },
+    "started_at": null,
+    "finished_at": "2026-10-08T16:47:44.028Z",
+    "committed_at": null,
+    "duration": null,
+    "queued_duration": null,
+    "coverage": null,
+    "detailed_status": {
+      "icon": "status_success",
+      "text": "Passed",
+      "label": "passed",
+      "group": "success",
+      "tooltip": "passed",
+      "has_details": true,
+      "details_path": "/root/forge-validation-proof/-/pipelines/2",
+      "illustration": null,
+      "favicon": "/assets/ci_favicons/favicon_status_success-8451333011eee8ce9f2ab25dc487fe24a8758c694827a582f17f42b0a90446a2.png"
+    },
+    "archived": false
+  },
+  "detailed_merge_status": "checking"
+}
+$ bin/fm-pr-merge.sh stale-pipeline https://127.0.0.1/root/forge-validation-proof/-/merge_requests/3
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+WARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.
+armed: state/stale-pipeline.check.sh
+error: refusing to merge https://127.0.0.1/root/forge-validation-proof/-/merge_requests/3
+  - the head pipeline ran at "6097ab7ed657f62d30416540099e19a1daaa5769", not at the current head 2e31330f1f9f32d6b3b20eec62b9b1da2e9862b2
+exit=1
+PASS: successful pipeline at old head refused.
+$ bin/fm-pr-merge.sh stale-pipeline https://127.0.0.1/root/forge-validation-proof/-/merge_requests/3
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+WARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.
+armed: state/stale-pipeline.check.sh
+error: could not read the GitLab merge request state before merging
+exit=1
+PASS: unreadable authenticated MR refused.
+$ bin/fm-pr-poll.sh --validated gitlab https://127.0.0.1/root/forge-validation-proof/-/merge_requests/3 127.0.0.1 root/forge-validation-proof 3
+exit=0
+$ bin/fm-pr-poll.sh --validated gitlab https://127.0.0.1/root/forge-validation-proof/-/merge_requests/2 127.0.0.1 root/forge-validation-proof 2
+merged
+exit=0
+PASS: open MR poll silent; merged MR poll emits merged.
+$ bin/fm-bootstrap.sh
+NEEDS_GH_AUTH
+exit=0
+$ bin/fm-bootstrap.sh
+NEEDS_GH_AUTH
+NEEDS_GLAB_AUTH: 127.0.0.1 (run: glab auth login --hostname 127.0.0.1)
+exit=0
+PASS: bootstrap accepts valid GitLab login and names the failing host for invalid login.

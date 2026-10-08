@@ -1,0 +1,1 @@
+ok - teardown reads a merged GitLab merge request with glab and closes the item with its URL as a note
