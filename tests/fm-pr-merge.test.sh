@@ -2309,6 +2309,7 @@ test_gitlab_locked_revalidation() {
       next_head=$(git -C "$case_dir/src" commit-tree "$GITLAB_HEAD^{tree}" -p "$GITLAB_HEAD" -m 'new head')
       next_target=$(git -C "$case_dir/src" commit-tree "$GITLAB_TARGET^{tree}" -p "$GITLAB_TARGET" -m 'new target')
       next_pipeline=$(git -C "$case_dir/src" commit-tree "$GITLAB_PIPELINE^{tree}" -p "$GITLAB_TARGET" -p "$GITLAB_HEAD" -m 'new pipeline')
+      # shellcheck disable=SC2016 # Expand $1 when the generated script runs.
       printf 'test -d "$1/state/.afk-contract.lock" || exit 1\n: > "$1/locked-recheck"\n' > "$case_dir/after-view.sh"
       case "$name" in
         source)
@@ -2319,10 +2320,12 @@ test_gitlab_locked_revalidation() {
           fi
           ;;
         target)
+          # shellcheck disable=SC2016 # Expand $1 when the generated script runs.
           printf 'git -C "$1/src" push -q origin "%s:refs/heads/main"\n' "$next_target" >> "$case_dir/after-view.sh"
           ;;
         target-rewind)
           next_target=$(git -C "$case_dir/src" rev-parse "$GITLAB_TARGET^1")
+          # shellcheck disable=SC2016 # Expand $1 when the generated script runs.
           printf 'git -C "$1/src" push -q -f origin "%s:refs/heads/main"\n' "$next_target" >> "$case_dir/after-view.sh"
           ;;
         retarget)
@@ -2336,9 +2339,13 @@ test_gitlab_locked_revalidation() {
           write_mr_json "$case_dir/mr-next.json" "head=$GITLAB_HEAD" "pipeline_sha=$GITLAB_PIPELINE" pipeline_ref=refs/merge-requests/8/merge
           ;;
         superseded)
+          # shellcheck disable=SC2016 # Expand $1 when the generated script runs.
           printf 'git -C "$1/src" push -q -f origin "%s:%s"\n' "$next_pipeline" "$ref" >> "$case_dir/after-view.sh"
           ;;
-        unreadable) printf ': > "$1/glab-view-fails"\n' >> "$case_dir/after-view.sh" ;;
+        unreadable)
+          # shellcheck disable=SC2016 # Expand $1 when the generated script runs.
+          printf ': > "$1/glab-view-fails"\n' >> "$case_dir/after-view.sh"
+          ;;
         train-status|train-identity|train-missing-car)
           if [ "$name" = train-status ]; then
             jq '.[0].status = "stale"' "$case_dir/train.json" > "$case_dir/train-next.json"
@@ -2347,9 +2354,11 @@ test_gitlab_locked_revalidation() {
           else
             jq '.[0].id = 11' "$case_dir/train.json" > "$case_dir/train-next.json"
           fi
+          # shellcheck disable=SC2016 # Expand $1 when the generated script runs.
           printf 'cp "$1/train-next.json" "$1/train.json"\n' >> "$case_dir/after-view.sh"
           ;;
       esac
+      # shellcheck disable=SC2016 # Expand $1 when the generated script runs.
       printf 'cp "$1/mr-next.json" "$1/mr.json"\n' >> "$case_dir/after-view.sh"
       rc=0
       run_pr_merge "$case_dir" task-x1 "$MR_URL" > "$case_dir/stdout" 2> "$case_dir/stderr" || rc=$?
