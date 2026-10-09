@@ -483,7 +483,7 @@ gitlab_fetch_ref() {  # <ref> <private ref>
 
 gitlab_pipeline_covers_head() {
   local iid=$1 ref=$2 sha=$3 live_head=$4 target_branch=$5 target_tip=$6 pipeline_id=$7
-  local kind label tip parents train project
+  local kind label tip parents train project target_path car_sha previous
   case "$ref" in
     "refs/merge-requests/$iid/merge") kind=merge label=merged-results ;;
     "refs/merge-requests/$iid/train") kind=train label=merge-train ;;
@@ -519,27 +519,39 @@ gitlab_pipeline_covers_head() {
       return 1
     }
   else
-    git -C "$GITLAB_WT" merge-base --is-ancestor "$target_tip" "$sha" 2>/dev/null || {
-      printf 'the merge-train pipeline commit does not contain the current target revision %s' "$target_tip"
-      return 1
-    }
     project=$(printf '%s' "$PR_PATH" | jq -sRr @uri) || return 1
+    target_path=$(printf '%s' "$target_branch" | jq -sRr @uri) || return 1
     if ! train=$(GITLAB_HOST="$FM_PR_HOST" glab api --hostname "$FM_PR_HOST" \
-      "projects/$project/merge_trains/merge_requests/$iid" 2>/dev/null) \
+      "projects/$project/merge_trains/$target_path?scope=active&sort=asc" --paginate 2>/dev/null) \
       || ! train=$(printf '%s' "$train" | jq -sce --arg iid "$iid" --arg url "$URL" \
         --arg target "$target_branch" --arg pipeline "$pipeline_id" --arg sha "$sha" --arg ref "$ref" '
-          if length == 1 then .[0] else error("expected one train record") end |
-          select(type == "object") |
-          select(.status == "fresh" and .target_branch == $target and
-            (.merge_request.iid | tostring) == $iid and .merge_request.web_url == $url and
+          select(length > 0 and all(.[]; type == "array")) | add |
+          select(length > 0 and all(.[]; type == "object" and
+            (.id | type) == "number" and .id > 0 and .id == (.id | floor))) |
+          select((map(.id) | unique | length) == length) | sort_by(.id) |
+          select((map(select((.merge_request.iid | tostring) == $iid)) | length) == 1) |
+          .[0: (map(.merge_request.iid | tostring) | index($iid)) + 1] |
+          select(all(.[]; .target_branch == $target and .status == "fresh" and
             .merge_request.state == "opened" and
+            (.pipeline.sha | type) == "string" and
+            (.pipeline.sha | test("^[0-9a-f]{40}$")))) |
+          select(.[-1] | .merge_request.web_url == $url and
             (.pipeline.id | tostring) == $pipeline and .pipeline.sha == $sha and
-            .pipeline.ref == $ref and .pipeline.status == "success" and
-            (.id | type) == "number") | [.id, .status, .target_branch, .pipeline.id, .pipeline.sha, .pipeline.ref]
+            .pipeline.ref == $ref and .pipeline.status == "success") |
+          map([.id, .status, .target_branch, .pipeline.id, .pipeline.sha, .pipeline.ref])
         ' 2>/dev/null); then
       printf 'GitLab merge-train provenance is missing, unreadable, stale, or does not match this pipeline and target'
       return 1
     fi
+    previous=$target_tip
+    while IFS= read -r car_sha; do
+      parents=$(git -C "$GITLAB_WT" show -s --format=%P "$car_sha" 2>/dev/null) || parents=
+      if [[ ! "$parents" =~ ^[0-9a-f]+\ [0-9a-f]+$ ]] || [ "${parents%% *}" != "$previous" ]; then
+        printf 'GitLab merge-train provenance does not form an exact parent chain from current target revision %s' "$target_tip"
+        return 1
+      fi
+      previous=$car_sha
+    done < <(printf '%s' "$train" | jq -r '.[][4]')
     printf '%s\n' "$train"
   fi
   printf '%s' "$label"
