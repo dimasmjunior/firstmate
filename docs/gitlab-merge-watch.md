@@ -236,7 +236,8 @@ diff base: origin/main
  1 file changed, 2 insertions(+)
 ```
 
-A review that cannot resolve the merge request's head prints `warning: PR head unavailable; diff may lag the open PR (using local branch fm/proof)` and `no changes vs origin/main` instead, so a published fix stays invisible to the review until it reaches the local branch.
+The [review fallback contract](architecture.md#delivery-modes-are-explicit-per-task) applies when the published head cannot be fetched.
+For this fixture, with neither a usable recorded head nor local changes, that fallback prints `warning: PR head unavailable; diff may lag the open PR (using local branch fm/proof)` and `no changes vs origin/main`.
 
 Arming the same merge request records the published head rather than nothing:
 
@@ -305,7 +306,7 @@ $ echo $?
 ```
 
 A project that runs no pipeline at all therefore cannot merge through this path.
-That is the intended reading of the requirement rather than an oversight: a successful pipeline at the head is a condition, and "there is no pipeline" does not satisfy it.
+The [pipeline provenance requirements](#pipelines-that-run-on-a-merged-result) require a successful pipeline, so "there is no pipeline" does not satisfy them.
 
 Both refusals came after `pr=` was recorded and the merge poll was armed, as a failed live verification or `gh pr merge` does on the GitHub side, so a refusal still leaves the audit trail and the watch in place.
 
@@ -369,7 +370,7 @@ It skips only that prompt; the conditions above are what authorize the merge.
 ## Why a recorded head is not the authority
 
 `bin/fm-pr-check.sh` records `pr_head=` for both forges: `gh` exposes a GitHub pull request's head commit as a selectable field, and a GitLab merge request's own head ref supplies the same fact ([above](#the-merge-requests-own-head-ref)).
-The record is optional by design, and every consumer treats it that way rather than as authority: `bin/fm-teardown.sh` reads the head from the forge at teardown and falls back to its provider-agnostic content check, and `bin/fm-review-diff.sh` fetches the request's head ref from the remote and uses a recorded value only when that fetch fails ([architecture.md](architecture.md) owns that fallback).
+The record is optional by design; [architecture.md](architecture.md) owns review fallback and teardown behavior.
 
 The merge path deliberately does not depend on a recorded head.
 A rebase moves the head and leaves any recorded value stale, so a merge decided from metadata can verify a commit that no longer exists.
