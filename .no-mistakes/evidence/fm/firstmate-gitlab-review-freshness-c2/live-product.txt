@@ -1,0 +1,94 @@
+Published fix outranks stale local branch and recorded head
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  1 task(s) in flight, but no live watcher process holds this home lock (last beat: 0s ago).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+diff base: origin/main
+ feature.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/feature.txt b/feature.txt
+index df967b9..0cc2f25 100644
+--- a/feature.txt
++++ b/feature.txt
+@@ -1 +1 @@
+-base
++mr-fixed
+Delete source branch; MR ref remains reviewable
+WARNING: watcher still down (same stale episode; last beat: 1s ago, grace 300s) - full banner already printed this episode.
+diff base: origin/main
+ feature.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/feature.txt b/feature.txt
+index df967b9..0cc2f25 100644
+--- a/feature.txt
++++ b/feature.txt
+@@ -1 +1 @@
+-base
++mr-fixed
+Register ready record from real project remote
+WARNING: watcher still down (same stale episode; last beat: 1s ago, grace 300s) - full banner already printed this episode.
+fm-contributions: data directory unavailable
+contributions: observation not armed; coverage is unconfirmed
+armed: state/task-x1.check.sh
+project=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4HAFFSRF3Y6RJPFA65NYNVS/.test-tmp/fm-review-diff-tests.IQnOdu/live-evidence/project
+pr=https://gitlab.example/group/subgroup/project/-/merge_requests/7
+pr_head=d69ecd36f2acd01b18a4965b7533342c93b29111
+Publish another fix after registration
+WARNING: watcher still down (same stale episode; last beat: 1s ago, grace 300s) - full banner already printed this episode.
+diff base: origin/main
+ feature.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/feature.txt b/feature.txt
+index df967b9..9dbf819 100644
+--- a/feature.txt
++++ b/feature.txt
+@@ -1 +1 @@
+-base
++second-published-fix
+WARNING: watcher still down (same stale episode; last beat: 1s ago, grace 300s) - full banner already printed this episode.
+fm-contributions: data directory unavailable
+contributions: observation not armed; coverage is unconfirmed
+armed: state/task-x1.check.sh
+project=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4HAFFSRF3Y6RJPFA65NYNVS/.test-tmp/fm-review-diff-tests.IQnOdu/live-evidence/project
+pr=https://gitlab.example/group/subgroup/project/-/merge_requests/7
+pr_head=d58e19ed2f329df835fc3bde745aa5e3bfc22a13
+Remove remote MR ref: review falls back to recorded head
+WARNING: watcher still down (same stale episode; last beat: 2s ago, grace 300s) - full banner already printed this episode.
+diff base: origin/main
+ feature.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/feature.txt b/feature.txt
+index df967b9..9dbf819 100644
+--- a/feature.txt
++++ b/feature.txt
+@@ -1 +1 @@
+-base
++second-published-fix
+Re-register unreadable head: no pr_head is recorded
+WARNING: watcher still down (same stale episode; last beat: 2s ago, grace 300s) - full banner already printed this episode.
+fm-contributions: data directory unavailable
+contributions: observation not armed; coverage is unconfirmed
+armed: state/task-x1.check.sh
+project=/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4HAFFSRF3Y6RJPFA65NYNVS/.test-tmp/fm-review-diff-tests.IQnOdu/live-evidence/project
+pr=https://gitlab.example/group/subgroup/project/-/merge_requests/7
+Without recorded or published head: explicit warning and local diff
+WARNING: watcher still down (same stale episode; last beat: 2s ago, grace 300s) - full banner already printed this episode.
+warning: PR head unavailable; diff may lag the open PR (using local branch fm/task-x1)
+diff base: origin/main
+ feature.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/feature.txt b/feature.txt
+index df967b9..9173868 100644
+--- a/feature.txt
++++ b/feature.txt
+@@ -1 +1 @@
+-base
++stale-local
