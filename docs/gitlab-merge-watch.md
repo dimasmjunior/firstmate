@@ -333,10 +333,13 @@ Merged results pipelines and merge trains run the merge request's pipeline on a 
 - the pipeline's `ref` is exactly `refs/merge-requests/<iid>/merge` or `refs/merge-requests/<iid>/train` for the merge request's own iid, which is what identifies the pipeline as this merge request's own rather than another's;
 - that ref's current tip in the project repository is exactly the commit the pipeline ran on, so a pipeline the ref has moved past is refused as superseded rather than merged;
 - the tested commit has exactly two parents, with the live source head as its second parent, so both source advances and rewinds refuse stale results;
-- a merged-results commit has the current target tip as its first parent; a train commit must contain the current target tip and have matching, fresh GitLab train provenance.
+- a merged-results commit has the current target tip as its first parent; a train commit must have matching GitLab provenance proving an exact parent chain rooted at the current target tip.
 
 The pipeline's kind and iid, and the merge request's head and target branch, come from the same live merge request view as every other pre-merge condition; the ref, the tested commit, and the target branch tip come from the merge request's own project repository.
-For a chained train car, the [merge-train status endpoint](https://docs.gitlab.com/api/merge_trains/#retrieve-merge-train-status) must report `fresh` for this merge request and target branch, with the same successful pipeline ID, SHA, and ref.
+The [target-branch merge-train endpoint](https://docs.gitlab.com/api/merge_trains/#list-all-merge-requests-in-a-merge-train) supplies all active cars across every page, ordered by car ID.
+Each car through the requested merge request must have exactly two parents, with its first parent equal to the preceding car's tested commit, or the current target tip for the first car.
+The requested car must report the same successful pipeline ID, SHA, and ref.
+Cars must report `fresh`, but that status alone does not prove target freshness.
 Missing, unreadable, stale, or mismatched train provenance refuses acceptance.
 
 The fixture's merged result shows the shape those refs carry on a live instance:
