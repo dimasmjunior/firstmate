@@ -332,11 +332,12 @@ Merged results pipelines and merge trains run the merge request's pipeline on a 
 
 - the pipeline's `ref` is exactly `refs/merge-requests/<iid>/merge` or `refs/merge-requests/<iid>/train` for the merge request's own iid, which is what identifies the pipeline as this merge request's own rather than another's;
 - that ref's current tip in the project repository is exactly the commit the pipeline ran on, so a pipeline the ref has moved past is refused as superseded rather than merged;
-- the tested commit contains the live head, so a pipeline that ran against an older revision of the source is refused;
-- the tested commit contains the current target branch tip, so a pipeline that tested an older target is refused.
+- the tested commit has exactly two parents, with the live source head as its second parent, so both source advances and rewinds refuse stale results;
+- a merged-results commit has the current target tip as its first parent; a train commit must contain the current target tip and have matching, fresh GitLab train provenance.
 
 The pipeline's kind and iid, and the merge request's head and target branch, come from the same live merge request view as every other pre-merge condition; the ref, the tested commit, and the target branch tip come from the merge request's own project repository.
-The proof is containment rather than parent equality, because a merge-train car chains: its parents are the previous car and the merge request's source, and the target branch reaches it only through that chain.
+For a chained train car, the [merge-train status endpoint](https://docs.gitlab.com/api/merge_trains/#retrieve-merge-train-status) must report `fresh` for this merge request and target branch, with the same successful pipeline ID, SHA, and ref.
+Missing, unreadable, stale, or mismatched train provenance refuses acceptance.
 
 The fixture's merged result shows the shape those refs carry on a live instance:
 
@@ -347,13 +348,15 @@ $ git log --format="%H %P" -1 refs/merge-requests/2/merge
 4ee1baff65593d0091283b40533c3d87c8200584 03a7d33b229e80ced8af9b9534ed2affc4972cd3 66b8a6777bea5e291d7fa2fc20c42ad7686f6bc8
 ```
 
-That merged result's parents are the target branch tip and the merge request's head, and both are ancestors of it, which is exactly what the containment proof checks.
+That merged result's first parent is the target branch tip and its second parent is the merge request's head, in the order the guard requires.
 No licensed instance was available to run a real merged-results or merge-train pipeline, so no live pipeline of either kind is claimed here; `tests/fm-pr-merge.test.sh` exercises the accepted proofs and every refusal hermetically, building the same refs and topologies, including a chained car whose target is an ancestor rather than a parent, and asserting that a merge runs only on proven provenance and is always bound to the live head with `--sha`.
 
 A pipeline that did not run at the head and cannot be proven this way refuses the merge, and the refusal names the fact that could not be proven.
 
 ## Why the head is read live and bound to the merge
 
+After acquiring the away-record lock, the guard repeats the live mergeability checks and full pipeline proof immediately before merging.
+It refuses any observed change in the source head, target branch or tip, pipeline identity or ref, or train provenance.
 The verified head is passed to `glab mr merge --sha`, so GitLab refuses the merge if the source branch moved between the read and the merge.
 Without it, a push landing in that window would merge commits nothing verified.
 

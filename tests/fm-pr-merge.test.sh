@@ -344,7 +344,18 @@ add_glab_mock() {
 printf 'GITLAB_HOST=%s %s\n' "${GITLAB_HOST-<unset>}" "$*" >> "$FM_TEST_GLAB_LOG"
 case_dir=$(dirname "$FM_TEST_GLAB_JSON")
 case "${1:-} ${2:-}" in
+  "api --hostname")
+    [ "$3" = "${GITLAB_HOST}" ] || exit 1
+    [ "$4" = "projects/group%2Fsubgroup%2Fproject/merge_trains/merge_requests/7" ] || exit 1
+    cat "$case_dir/train.json"
+    exit $?
+    ;;
   "mr view")
+    if [ -f "$case_dir/after-view.sh" ] && [ -e "$case_dir/view-seen" ]; then
+      bash "$case_dir/after-view.sh" "$case_dir" || exit 1
+      rm "$case_dir/after-view.sh"
+    fi
+    : > "$case_dir/view-seen"
     [ ! -e "$case_dir/glab-view-fails" ] || exit 1
     if [ -e "$case_dir/glab-merge-called" ] && [ ! -e "$case_dir/glab-stays-open" ]; then
       cat "$case_dir/mr-post.json"
@@ -373,7 +384,7 @@ write_mr_json() {
   local file=$1 kv key value
   local state=opened detail=mergeable conflicts=false discussions=true
   local head=$MR_HEAD pipeline_sha=$MR_HEAD pipeline_status=success pipeline=present
-  local pipeline_ref='' target_branch=main iid=7
+  local pipeline_ref='' target_branch=main iid=7 pipeline_id=42
   local merge_when_pipeline_succeeds=false merge_after=null
   shift
   for kv in "$@"; do
@@ -388,6 +399,7 @@ write_mr_json() {
       pipeline_sha) pipeline_sha=$value ;;
       pipeline_status) pipeline_status=$value ;;
       pipeline_ref) pipeline_ref=$value ;;
+      pipeline_id) pipeline_id=$value ;;
       target_branch) target_branch=$value ;;
       iid) iid=$value ;;
       pipeline) pipeline=$value ;;
@@ -397,7 +409,7 @@ write_mr_json() {
     esac
   done
   if [ "$pipeline" = present ]; then
-    pipeline=$(printf '{"sha":"%s","status":"%s","ref":"%s"}' "$pipeline_sha" "$pipeline_status" "$pipeline_ref")
+    pipeline=$(printf '{"id":%s,"sha":"%s","status":"%s","ref":"%s"}' "$pipeline_id" "$pipeline_sha" "$pipeline_status" "$pipeline_ref")
   fi
   printf '{"iid":%s,"state":"%s","detailed_merge_status":"%s","has_conflicts":%s,' \
     "$iid" "$state" "$detail" "$conflicts" > "$file"
@@ -416,6 +428,9 @@ make_gitlab_case() {
   mkdir -p "$case_dir/wt"
   add_gh_mocks "$case_dir" cccccccccccccccccccccccccccccccccccccccc
   add_glab_mock "$case_dir"
+  git init -q --bare "$case_dir/origin.git"
+  git -C "$case_dir/wt" remote add origin "$case_dir/origin.git"
+  git -C "$case_dir/wt" push -q origin HEAD:refs/heads/main
   : > "$case_dir/gh-axi.log"
   : > "$case_dir/glab.log"
   write_mr_json "$case_dir/mr.json" "$@"
@@ -1970,8 +1985,7 @@ seed_gitlab_project() {  # <case_dir> <iid>
   git -C "$src" push -q origin "mr:refs/merge-requests/$iid/head"
   GITLAB_HEAD=$(git -C "$src" rev-parse HEAD)
 
-  git -C "$case_dir/wt" remote remove origin 2>/dev/null || true
-  git -C "$case_dir/wt" remote add origin "$origin"
+  git -C "$case_dir/wt" remote set-url origin "$origin"
 }
 
 # Publish the merged result GitLab builds for refs/merge-requests/<iid>/merge:
@@ -2002,6 +2016,11 @@ seed_train_car() {  # <case_dir> <ref>
   git -C "$case_dir/src" merge -q --no-ff -m 'this merge request car' mr
   GITLAB_PIPELINE=$(git -C "$case_dir/src" rev-parse HEAD)
   git -C "$case_dir/src" push -q origin "HEAD:$ref"
+  jq -n --arg url "$MR_URL" --arg sha "$GITLAB_PIPELINE" --arg ref "$ref" '
+    {id: 10, status: "fresh", target_branch: "main",
+     merge_request: {iid: 7, state: "opened", web_url: $url},
+     pipeline: {id: 42, sha: $sha, ref: $ref, status: "success"}}' > "$case_dir/train.json"
+
 }
 
 test_gitlab_merged_results_pipeline_merges() {
@@ -2037,9 +2056,6 @@ test_gitlab_merge_train_pipeline_merges() {
   case_dir=$(make_gitlab_case gitlab-merge-train)
   seed_gitlab_project "$case_dir" 7
   seed_train_car "$case_dir" refs/merge-requests/7/train
-  # The car chains onto a previous car, so the target branch is in its ancestry
-  # but is not one of its parents: the proof must be containment, not parent
-  # equality.
   parents=$(git -C "$case_dir/src" rev-list --parents -1 "$GITLAB_PIPELINE" | cut -d' ' -f2-)
   case " $parents " in
     *" $GITLAB_TARGET "*) fail "gitlab-merge-train: fixture kept the target as a direct parent" ;;
@@ -2071,14 +2087,16 @@ test_gitlab_merge_train_pipeline_merges() {
 # no acceptance can be carried by another. Every case refuses, names the broken
 # fact, and never reaches the forge merge command.
 test_gitlab_pipeline_provenance_refusals() {
-  local case_dir rc name expected expected_head pipeline_ref pipeline_sha extra newer new_head target_advanced
+  local case_dir rc name expected expected_head pipeline_ref pipeline_sha extra newer new_head target_advanced older new_target
   set -- \
     "wrong-ref|the pipeline ref is \"refs/merge-requests/8/merge\", not this merge request's own merge or train ref" \
     "missing-ref|the merge-train ref refs/merge-requests/7/train could not be read from the project remote" \
     "superseded|currently points at" \
-    "stale-source|does not contain the current head" \
-    "stale-target|does not contain the current target revision" \
-    "unrelated|does not contain the current head" \
+    "stale-source|second parent is not the current head" \
+    "rewound-source|second parent is not the current head" \
+    "rewound-target|first parent is not the current target revision" \
+    "stale-target|first parent is not the current target revision" \
+    "unrelated|second parent is not the current head" \
     "iid-mismatch|the live merge request reports iid \"8\", not the requested merge request 7" \
     "unreadable-remote|could not be read from the project remote"
   for spec in "$@"; do
@@ -2107,6 +2125,19 @@ test_gitlab_pipeline_provenance_refusals() {
           "$(git -C "$case_dir/src" rev-parse "$GITLAB_PIPELINE^{tree}")" \
           -p "$GITLAB_TARGET" -p "$GITLAB_HEAD" -m 'newer merged result')
         git -C "$case_dir/src" push -q -f origin "$newer:refs/merge-requests/7/merge"
+        ;;
+      rewound-source)
+        extra=("head=$GITLAB_TARGET")
+        expected_head=$GITLAB_TARGET
+        git -C "$case_dir/src" push -q -f origin "$GITLAB_TARGET:refs/merge-requests/7/head"
+        ;;
+      rewound-target)
+        git -C "$case_dir/src" checkout -q --orphan older-target
+        git -C "$case_dir/src" commit -qm 'older target'
+        older=$(git -C "$case_dir/src" rev-parse HEAD)
+        new_target=$(git -C "$case_dir/src" commit-tree "$GITLAB_TARGET^{tree}" -p "$older" -m 'target before rewind')
+        pipeline_sha=$(git -C "$case_dir/src" commit-tree "$GITLAB_PIPELINE^{tree}" -p "$new_target" -p "$GITLAB_HEAD" -m 'tested before rewind')
+        git -C "$case_dir/src" push -q -f origin "$pipeline_sha:refs/merge-requests/7/merge" "$older:refs/heads/main"
         ;;
       stale-source)
         git -C "$case_dir/src" checkout -q mr
@@ -2177,6 +2208,133 @@ test_gitlab_pipeline_provenance_refusals() {
       || assert_grep "$newer" "$case_dir/stderr" "gitlab-pipeline-superseded: the newer ref tip was not named"
   done
   pass "fm-pr-merge refuses every merged-results or merge-train pipeline whose provenance is unproven"
+}
+
+test_gitlab_train_provenance_refusals() {
+  local case_dir name rc filter older
+  for name in missing unreadable empty null ambiguous stale idle wrong-target wrong-iid wrong-project wrong-pipeline wrong-sha wrong-ref failed rewound-source rewound-target advanced-target; do
+    case_dir=$(make_gitlab_case "gitlab-train-$name")
+    seed_gitlab_project "$case_dir" 7
+    seed_train_car "$case_dir" refs/merge-requests/7/train
+    write_mr_json "$case_dir/mr.json" "head=$GITLAB_HEAD" \
+      "pipeline_sha=$GITLAB_PIPELINE" pipeline_ref=refs/merge-requests/7/train
+    filter=.
+    case "$name" in
+      missing) rm "$case_dir/train.json" ;;
+      unreadable) printf 'not JSON' > "$case_dir/train.json" ;;
+      empty) : > "$case_dir/train.json" ;;
+      null) filter='null' ;;
+      ambiguous) filter='., .' ;;
+      stale) filter='.status = "stale"' ;;
+      idle) filter='.status = "idle"' ;;
+      wrong-target) filter='.target_branch = "other"' ;;
+      wrong-iid) filter='.merge_request.iid = 8' ;;
+      wrong-project) filter='.merge_request.web_url = "https://gitlab.example/other/-/merge_requests/7"' ;;
+      wrong-pipeline) filter='.pipeline.id = 43' ;;
+      wrong-sha) filter='.pipeline.sha = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"' ;;
+      wrong-ref) filter='.pipeline.ref = "refs/merge-requests/8/train"' ;;
+      failed) filter='.pipeline.status = "failed"' ;;
+      rewound-source)
+        git -C "$case_dir/src" push -q -f origin "$GITLAB_TARGET:refs/merge-requests/7/head"
+        write_mr_json "$case_dir/mr.json" "head=$GITLAB_TARGET" \
+          "pipeline_sha=$GITLAB_PIPELINE" pipeline_ref=refs/merge-requests/7/train
+        ;;
+      rewound-target)
+        older=$(git -C "$case_dir/src" commit-tree "$GITLAB_TARGET^{tree}" -m 'old target')
+        GITLAB_TARGET=$(git -C "$case_dir/src" commit-tree "$GITLAB_TARGET^{tree}" -p "$older" -m 'target before rewind')
+        GITLAB_PIPELINE=$(git -C "$case_dir/src" commit-tree "$GITLAB_PIPELINE^{tree}" -p "$GITLAB_TARGET" -p "$GITLAB_HEAD" -m 'car before rewind')
+        git -C "$case_dir/src" push -q -f origin "$older:refs/heads/main" "$GITLAB_PIPELINE:refs/merge-requests/7/train"
+        write_mr_json "$case_dir/mr.json" "head=$GITLAB_HEAD" \
+          "pipeline_sha=$GITLAB_PIPELINE" pipeline_ref=refs/merge-requests/7/train
+        filter=".pipeline.sha = \"$GITLAB_PIPELINE\" | .status = \"stale\""
+        ;;
+      advanced-target)
+        git -C "$case_dir/src" push -q origin "$GITLAB_PIPELINE:refs/heads/main"
+        filter='.status = "stale"'
+        ;;
+    esac
+    if [ "$name" != missing ] && [ "$name" != unreadable ]; then
+      jq "$filter" "$case_dir/train.json" > "$case_dir/train-next.json"
+      mv "$case_dir/train-next.json" "$case_dir/train.json"
+    fi
+    rc=0
+    run_pr_merge "$case_dir" task-x1 "$MR_URL" > "$case_dir/stdout" 2> "$case_dir/stderr" || rc=$?
+    expect_code 1 "$rc" "gitlab-train-$name: unproven train must refuse"
+    [ -z "$(glab_merge_line "$case_dir/glab.log")" ] || fail "gitlab-train-$name: merge attempted"
+    if [ "$name" = rewound-source ]; then
+      assert_grep 'second parent is not the current head' "$case_dir/stderr" "gitlab-train-$name: wrong refusal"
+    else
+      assert_grep 'GitLab merge-train provenance' "$case_dir/stderr" "gitlab-train-$name: wrong refusal"
+    fi
+  done
+  pass "fm-pr-merge refuses missing, stale, mismatched and rewound merge-train provenance"
+}
+
+test_gitlab_locked_revalidation() {
+  local case_dir name kind rc ref next_head next_target next_pipeline
+  for kind in source merge train; do
+    for name in source target retarget pipeline ref superseded unreadable train-status train-identity; do
+      case "$kind:$name" in
+        source:superseded|source:train-*|merge:train-*) continue ;;
+      esac
+      case_dir=$(make_gitlab_case "gitlab-recheck-$kind-$name")
+      seed_gitlab_project "$case_dir" 7
+      ref="refs/merge-requests/7/$kind"
+      case "$kind" in
+        source) GITLAB_PIPELINE=$GITLAB_HEAD ;;
+        merge) seed_merged_result "$case_dir" "$ref" ;;
+        train) seed_train_car "$case_dir" "$ref" ;;
+      esac
+      write_mr_json "$case_dir/mr.json" "head=$GITLAB_HEAD" \
+        "pipeline_sha=$GITLAB_PIPELINE" "pipeline_ref=$ref"
+      cp "$case_dir/mr.json" "$case_dir/mr-next.json"
+      next_head=$(git -C "$case_dir/src" commit-tree "$GITLAB_HEAD^{tree}" -p "$GITLAB_HEAD" -m 'new head')
+      next_target=$(git -C "$case_dir/src" commit-tree "$GITLAB_TARGET^{tree}" -p "$GITLAB_TARGET" -m 'new target')
+      next_pipeline=$(git -C "$case_dir/src" commit-tree "$GITLAB_PIPELINE^{tree}" -p "$GITLAB_TARGET" -p "$GITLAB_HEAD" -m 'new pipeline')
+      printf 'test -d "$1/state/.afk-contract.lock" || exit 1\n: > "$1/locked-recheck"\n' > "$case_dir/after-view.sh"
+      case "$name" in
+        source)
+          if [ "$kind" = source ]; then
+            write_mr_json "$case_dir/mr-next.json" "head=$next_head" "pipeline_sha=$next_head" "pipeline_ref=$ref"
+          else
+            write_mr_json "$case_dir/mr-next.json" "head=$next_head" "pipeline_sha=$GITLAB_PIPELINE" "pipeline_ref=$ref"
+          fi
+          ;;
+        target)
+          printf 'git -C "$1/src" push -q origin "%s:refs/heads/main"\n' "$next_target" >> "$case_dir/after-view.sh"
+          ;;
+        retarget)
+          git -C "$case_dir/src" push -q origin "$GITLAB_TARGET:refs/heads/other"
+          write_mr_json "$case_dir/mr-next.json" "head=$GITLAB_HEAD" "pipeline_sha=$GITLAB_PIPELINE" "pipeline_ref=$ref" target_branch=other
+          ;;
+        pipeline)
+          write_mr_json "$case_dir/mr-next.json" "head=$GITLAB_HEAD" "pipeline_sha=$GITLAB_PIPELINE" "pipeline_ref=$ref" pipeline_id=43
+          ;;
+        ref)
+          write_mr_json "$case_dir/mr-next.json" "head=$GITLAB_HEAD" "pipeline_sha=$GITLAB_PIPELINE" pipeline_ref=refs/merge-requests/8/merge
+          ;;
+        superseded)
+          printf 'git -C "$1/src" push -q -f origin "%s:%s"\n' "$next_pipeline" "$ref" >> "$case_dir/after-view.sh"
+          ;;
+        unreadable) printf ': > "$1/glab-view-fails"\n' >> "$case_dir/after-view.sh" ;;
+        train-status|train-identity)
+          if [ "$name" = train-status ]; then
+            jq '.status = "stale"' "$case_dir/train.json" > "$case_dir/train-next.json"
+          else
+            jq '.id = 11' "$case_dir/train.json" > "$case_dir/train-next.json"
+          fi
+          printf 'cp "$1/train-next.json" "$1/train.json"\n' >> "$case_dir/after-view.sh"
+          ;;
+      esac
+      printf 'cp "$1/mr-next.json" "$1/mr.json"\n' >> "$case_dir/after-view.sh"
+      rc=0
+      run_pr_merge "$case_dir" task-x1 "$MR_URL" > "$case_dir/stdout" 2> "$case_dir/stderr" || rc=$?
+      expect_code 1 "$rc" "gitlab-recheck-$kind-$name: changed proof must refuse"
+      assert_present "$case_dir/locked-recheck" "gitlab-recheck-$kind-$name: no recheck under the lock"
+      [ -z "$(glab_merge_line "$case_dir/glab.log")" ] || fail "gitlab-recheck-$kind-$name: merge attempted"
+    done
+  done
+  pass "fm-pr-merge revalidates all GitLab provenance under the away-record lock"
 }
 
 test_gitlab_unreadable_state_refuses() {
@@ -2654,6 +2812,8 @@ test_gitlab_stale_recorded_head_is_reported
 test_gitlab_merged_results_pipeline_merges
 test_gitlab_merge_train_pipeline_merges
 test_gitlab_pipeline_provenance_refusals
+test_gitlab_train_provenance_refusals
+test_gitlab_locked_revalidation
 test_gitlab_unreadable_state_refuses
 test_gitlab_invalid_head_refuses
 test_gitlab_missing_tool_refuses_before_recording

@@ -91,15 +91,8 @@
 # exact current head commit. Every failing condition is reported, not just the
 # first. A successful head pipeline whose commit is not the current head is
 # accepted only as this merge request's own merged-results or merge-train
-# pipeline, whose provenance this run proves from the project's own repository:
-# the pipeline's ref must be exactly refs/merge-requests/<iid>/merge or
-# refs/merge-requests/<iid>/train for this merge request's own iid, that ref's
-# current tip on the project remote must be exactly the tested commit (so a
-# superseded pipeline is refused rather than merged), and the tested commit must
-# contain the live head and the live target branch tip, so a pipeline that ran
-# against an older revision of either side is refused. Any other ref, an
-# unreadable ref, tip, or target branch, or a commit missing either revision
-# refuses the merge; the source-head pipeline at the current head is unchanged.
+# pipeline, with the provenance requirements documented in
+# docs/gitlab-merge-watch.md under "Pipelines that run on a merged result".
 # The verified head is then passed to glab as --sha, so a push that lands
 # between that read and the merge fails the merge instead of landing commits
 # nothing verified. A recorded pr_head that disagrees with the live head is
@@ -472,6 +465,7 @@ fi
 # returns non-zero after reporting every condition that failed.
 FM_PR_MERGE_HEAD=
 FM_PR_GITLAB_ASYNC_CONFIGURED=false
+FM_PR_GITLAB_PROOF=
 
 # Fetch one ref from the project remote into a private review ref and print the
 # commit it names, or fail. The remote is named, so the ref is read from the
@@ -487,18 +481,9 @@ gitlab_fetch_ref() {  # <ref> <private ref>
   printf '%s' "$tip"
 }
 
-# 0 and prints the pipeline kind when a successful pipeline that did not run at
-# the live head is proven to be this merge request's own merged-results or
-# merge-train pipeline covering the current revisions; 1 and prints a one-line
-# refusal reason otherwise. The proof is repository provenance for the commit
-# and API provenance for the ref: the ref must be this merge request's own
-# merge or train ref, that ref's current tip must be exactly the tested commit,
-# and the tested commit must contain the live head and the live target branch
-# tip. Nothing is inferred from the pipeline's own claim or from a direct-parent
-# shape, so a chained merge-train commit is judged by what it contains.
-gitlab_pipeline_covers_head() {  # <iid> <pipeline ref> <pipeline sha> <live head> <target branch>
-  local iid=$1 ref=$2 sha=$3 live_head=$4 target_branch=$5
-  local kind label tip target_tip
+gitlab_pipeline_covers_head() {
+  local iid=$1 ref=$2 sha=$3 live_head=$4 target_branch=$5 target_tip=$6 pipeline_id=$7
+  local kind label tip parents train project
   case "$ref" in
     "refs/merge-requests/$iid/merge") kind=merge label=merged-results ;;
     "refs/merge-requests/$iid/train") kind=train label=merge-train ;;
@@ -523,22 +508,40 @@ gitlab_pipeline_covers_head() {  # <iid> <pipeline ref> <pipeline sha> <live hea
       printf 'the %s ref currently points at %s, not at the tested commit %s' "$label" "$tip" "$sha"
       return 1
     }
-  git -C "$GITLAB_WT" merge-base --is-ancestor "$live_head" "$sha" 2>/dev/null \
-    || {
-      printf 'the %s pipeline commit does not contain the current head %s' "$label" "$live_head"
+  parents=$(git -C "$GITLAB_WT" show -s --format=%P "$sha" 2>/dev/null) || return 1
+  if [[ ! "$parents" =~ ^[0-9a-f]+\ [0-9a-f]+$ ]] || [ "${parents#* }" != "$live_head" ]; then
+    printf 'the %s pipeline second parent is not the current head %s' "$label" "$live_head"
+    return 1
+  fi
+  if [ "$kind" = merge ]; then
+    [ "${parents%% *}" = "$target_tip" ] || {
+      printf 'the merged-results pipeline first parent is not the current target revision %s' "$target_tip"
       return 1
     }
-  target_tip=$(gitlab_fetch_ref "refs/heads/$target_branch" "refs/fm-review/mr/$iid/target") \
-    || {
-      printf 'the target branch %s could not be read from the project remote' "${target_branch:-?}"
+  else
+    git -C "$GITLAB_WT" merge-base --is-ancestor "$target_tip" "$sha" 2>/dev/null || {
+      printf 'the merge-train pipeline commit does not contain the current target revision %s' "$target_tip"
       return 1
     }
-  git -C "$GITLAB_WT" merge-base --is-ancestor "$target_tip" "$sha" 2>/dev/null \
-    || {
-      printf 'the %s pipeline commit does not contain the current target revision %s' \
-        "$label" "$target_tip"
+    project=$(printf '%s' "$PR_PATH" | jq -sRr @uri) || return 1
+    if ! train=$(GITLAB_HOST="$FM_PR_HOST" glab api --hostname "$FM_PR_HOST" \
+      "projects/$project/merge_trains/merge_requests/$iid" 2>/dev/null) \
+      || ! train=$(printf '%s' "$train" | jq -sce --arg iid "$iid" --arg url "$URL" \
+        --arg target "$target_branch" --arg pipeline "$pipeline_id" --arg sha "$sha" --arg ref "$ref" '
+          if length == 1 then .[0] else error("expected one train record") end |
+          select(type == "object") |
+          select(.status == "fresh" and .target_branch == $target and
+            (.merge_request.iid | tostring) == $iid and .merge_request.web_url == $url and
+            .merge_request.state == "opened" and
+            (.pipeline.id | tostring) == $pipeline and .pipeline.sha == $sha and
+            .pipeline.ref == $ref and .pipeline.status == "success" and
+            (.id | type) == "number") | [.id, .status, .target_branch, .pipeline.id, .pipeline.sha, .pipeline.ref]
+        ' 2>/dev/null); then
+      printf 'GitLab merge-train provenance is missing, unreadable, stale, or does not match this pipeline and target'
       return 1
-    }
+    fi
+    printf '%s\n' "$train"
+  fi
   printf '%s' "$label"
 }
 
@@ -548,6 +551,7 @@ gitlab_verify_mergeable() {
   local state='' detail='' conflicts='' discussions=''
   local live_head='' pipeline_sha='' pipeline_status='' async_configured=''
   local mr_iid='' pipeline_ref='' target_branch='' pipeline_kind='' pipeline_refusal=''
+  local pipeline_id='' target_tip='' proof=''
 
   # GITLAB_HOST is set to the same host the project URL already carries, so the
   # instance is taken from the parsed URL by both signals and never from the
@@ -577,6 +581,7 @@ gitlab_verify_mergeable() {
         "pipeline_sha=" + ((.head_pipeline.sha // "") | tostring),
         "pipeline_status=" + ((.head_pipeline.status // "") | tostring),
         "pipeline_ref=" + ((.head_pipeline.ref // "") | tostring),
+        "pipeline_id=" + ((.head_pipeline.id // "") | tostring),
         "async_configured=" + (if .merge_when_pipeline_succeeds == true or (.merge_after != null) then "true" else "false" end)
       else
         error("merge request payload is not an object")
@@ -597,6 +602,7 @@ gitlab_verify_mergeable() {
       pipeline_sha=*) pipeline_sha=${line#pipeline_sha=} ;;
       pipeline_status=*) pipeline_status=${line#pipeline_status=} ;;
       pipeline_ref=*) pipeline_ref=${line#pipeline_ref=} ;;
+      pipeline_id=*) pipeline_id=${line#pipeline_id=} ;;
       async_configured=*) async_configured=${line#async_configured=} ;;
       *) continue ;;
     esac
@@ -607,7 +613,7 @@ FIELDS
   # Every field named exactly once and no unnamed line: a value carrying a
   # newline would split into a line no name matches, so it is refused here
   # rather than silently truncated into a value a check could accept.
-  if [ "$named" -ne 11 ] || [ "$total" -ne 11 ]; then
+  if [ "$named" -ne 12 ] || [ "$total" -ne 12 ]; then
     echo "error: could not read the GitLab merge request state before merging" >&2
     return 1
   fi
@@ -623,18 +629,22 @@ FIELDS
       "$RECORDED_HEAD" "$live_head" >&2
   fi
 
-  # A pipeline at the live head is the plain source pipeline. A successful
-  # pipeline somewhere else is judged by provenance: only this merge request's
-  # own merged-results or merge-train ref, currently pointing at exactly the
-  # tested commit and containing both live revisions, is accepted. When the
-  # pipeline's status already refuses the merge, the extra provenance is not
-  # computed, and the refusal keeps naming the same two facts it always has.
+  if [ "$pipeline_status" = success ]; then
+    target_tip=$(gitlab_fetch_ref "refs/heads/$target_branch" "refs/fm-review/mr/$PR_NUMBER/target") ||
+      refusals="$refusals  - the target branch $target_branch could not be read from the project remote
+"
+    if [[ ! "$pipeline_id" =~ ^[1-9][0-9]*$ ]]; then
+      refusals="$refusals  - could not read the GitLab pipeline identity before merging
+"
+    fi
+  fi
+
   if [ "$pipeline_status" = success ] && [ "$pipeline_sha" != "$live_head" ]; then
-    if pipeline_kind=$(gitlab_pipeline_covers_head \
-      "$mr_iid" "$pipeline_ref" "$pipeline_sha" "$live_head" "$target_branch"); then
-      :
+    if proof=$(gitlab_pipeline_covers_head \
+      "$mr_iid" "$pipeline_ref" "$pipeline_sha" "$live_head" "$target_branch" "$target_tip" "$pipeline_id"); then
+      pipeline_kind=${proof##*$'\n'}
     else
-      pipeline_refusal=$pipeline_kind
+      pipeline_refusal=$proof
       pipeline_kind=
     fi
   fi
@@ -670,6 +680,9 @@ FIELDS
     printf 'verified: %s is open and mergeable, with a successful pipeline at head %s\n' \
       "$URL" "$live_head" >&2
   fi
+  FM_PR_GITLAB_PROOF="$fields
+$target_tip
+$proof"
   FM_PR_MERGE_HEAD=$live_head
   FM_PR_GITLAB_ASYNC_CONFIGURED=$async_configured
 }
@@ -1550,6 +1563,7 @@ case "$PROVIDER" in
     ;;
   gitlab)
     gitlab_verify_mergeable || exit 1
+    gitlab_initial_proof=$FM_PR_GITLAB_PROOF
     # --sha binds the merge to the head this run verified, so a push that lands
     # in between is refused by GitLab instead of merged unverified. --yes only
     # skips the interactive confirmation, which no supervised run can answer;
@@ -1564,6 +1578,11 @@ case "$PROVIDER" in
     gitlab_merge_args=()
     if [ "$FM_PR_AWAY_POSTURE" = true ]; then
       gitlab_merge_args=(--auto-merge=false)
+    fi
+    gitlab_verify_mergeable || exit 1
+    if [ "$FM_PR_GITLAB_PROOF" != "$gitlab_initial_proof" ]; then
+      echo 'error: GitLab merge provenance changed before merging' >&2
+      exit 1
     fi
     GITLAB_HOST="$FM_PR_HOST" glab mr merge "$PR_NUMBER" -R "$PROJECT_URL" \
       --sha "$FM_PR_MERGE_HEAD" --yes "$@" "${gitlab_merge_args[@]+"${gitlab_merge_args[@]}"}" || merge_status=$?
