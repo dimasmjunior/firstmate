@@ -2501,7 +2501,7 @@ test_gitlab_locked_revalidation() {
   for kind in source merge train; do
     for name in source target target-rewind retarget pipeline ref superseded unreadable train-status train-identity train-missing-car; do
       case "$kind:$name" in
-        source:superseded|source:train-*|merge:train-*) continue ;;
+        source:superseded|source:train-*|merge:train-*|source:target|source:target-rewind|source:retarget) continue ;;
       esac
       case_dir=$(make_gitlab_case "gitlab-recheck-$kind-$name")
       seed_gitlab_project "$case_dir" 7

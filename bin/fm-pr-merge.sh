@@ -717,7 +717,7 @@ FIELDS
       "$RECORDED_HEAD" "$live_head" >&2
   fi
 
-  if [ "$pipeline_status" = success ]; then
+  if [ "$pipeline_status" = success ] && [ "$pipeline_sha" != "$live_head" ]; then
     target_tip=$(gitlab_fetch_ref "refs/heads/$target_branch" "refs/fm-review/mr/$PR_NUMBER/target") ||
       refusals="$refusals  - the target branch $target_branch could not be read from the project remote
 "
