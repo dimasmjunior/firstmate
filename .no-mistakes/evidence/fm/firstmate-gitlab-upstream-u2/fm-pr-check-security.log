@@ -1,5 +1,7 @@
 ok - raw-byte parser accepts canonical URLs and rejects the complete adversarial matrix
 ok - GitLab merge requests are followed on any instance and never wake falsely
+ok - Forgejo poll reads one pull request by number through tea api and wakes only on merged true
+ok - Forgejo login match parses tea's JSON in every line shape, in the helper and the static poll
 ok - GitLab draft registration refuses without mutation, permits a ready transition, and preserves optional unreadable-state behavior
 ok - the Gerrit watch wakes only on an explicit merged status and never on submittability
 ok - Gerrit arming records no patch set revision and the merge path refuses to submit

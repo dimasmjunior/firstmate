@@ -56,6 +56,18 @@ ok - fm-pr-merge reports a stale recorded head and verifies the live one
 ok - fm-pr-merge refuses an unreadable GitLab merge request state rather than merging blind
 ok - fm-pr-merge refuses a GitLab head commit it cannot validate
 ok - fm-pr-merge refuses before recording anything when glab or jq is absent
+ok - fm-pr-merge merges a Forgejo pull request through tea api instead of refusing it
+ok - fm-pr-merge resolves the tea login by matching the PR's host against every registered login
+ok - fm-pr-merge refuses when zero or more than one tea login matches the pull request's host
+ok - fm-pr-merge refuses on each Forgejo pre-merge condition independently
+ok - fm-pr-merge treats an unconfigured Forgejo combined status as none, refusing rather than skipping the check
+ok - fm-pr-merge reads every Forgejo combined-status page before merging
+ok - fm-pr-merge reports a stale recorded head and binds the merge to the live one instead
+ok - fm-pr-merge refuses a Forgejo head commit it cannot validate
+ok - fm-pr-merge refuses before recording anything when tea or jq is absent
+ok - fm-pr-merge never trusts tea api's exit status alone; a rejected merge is caught by the confirm read
+ok - fm-pr-merge retries a failed Forgejo confirmation read and persists the merge authority
+ok - fm-pr-merge maps --squash/--rebase to Forgejo's Do field, defaults to the repository's default merge style, and refuses any other extra argument
 ok - fm-pr-merge refuses a GitLab head override before recording state
 ok - a merge a secondmate home performs itself is reported upward exactly once
 ok - a locally routed secondmate home reports the landed PR into its parent's own channel
@@ -109,3 +121,5 @@ ok - fm-pr-merge --allow-missing is single use, attended-only, and GitHub-only l
 ok - fm-pr-merge enforces required producer identity and named waivers
 ok - fm-pr-merge matches an app-bound required commit status by name
 ok - fm-pr-merge reports known missing checks and all independent read errors
+ok - fm-pr-merge refuses --allow-red on Forgejo
+ok - fm-pr-merge refuses --allow-missing on Forgejo
