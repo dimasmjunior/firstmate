@@ -1,0 +1,256 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+    "body": {
+      "sha": "f1f66112714e97af84f8d7e067730145c37b8368"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+    "body": {
+      "sha": "f1f66112714e97af84f8d7e067730145c37b8368"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+    "body": {
+      "sha": "f1f66112714e97af84f8d7e067730145c37b8368"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+    "body": {
+      "sha": "f1f66112714e97af84f8d7e067730145c37b8368"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+    "body": {
+      "sha": "f1f66112714e97af84f8d7e067730145c37b8368"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/merge",
+    "body": {
+      "sha": "f1f66112714e97af84f8d7e067730145c37b8368"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7?include_diverged_commits_count=true&include_rebase_in_progress=true&render_html=true"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7/approval_state"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v4/projects/group%2Fproject/merge_requests/7"
+  }
+]

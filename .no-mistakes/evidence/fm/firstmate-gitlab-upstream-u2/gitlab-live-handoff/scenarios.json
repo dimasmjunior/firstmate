@@ -1,0 +1,32 @@
+[
+  {
+    "name": "project-binding",
+    "result": "pass",
+    "real_production_cli": true
+  },
+  {
+    "name": "guarded-merge",
+    "result": "pass",
+    "real_production_cli": true
+  },
+  {
+    "name": "brief-binding",
+    "result": "pass",
+    "real_production_cli": true
+  },
+  {
+    "name": "forge-detection",
+    "result": "pass",
+    "real_production_cli": true
+  },
+  {
+    "name": "teardown-gotmp",
+    "result": "pass",
+    "real_production_cli": true
+  },
+  {
+    "name": "pr-check-security",
+    "result": "pass",
+    "real_production_cli": true
+  }
+]

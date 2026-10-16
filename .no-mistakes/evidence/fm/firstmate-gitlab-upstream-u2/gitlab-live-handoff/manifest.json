@@ -1,0 +1,39 @@
+{
+  "source_head": "ab7dbe78bdbab5c93ef1d8b0ef2fbc7162d4e672",
+  "scenarios": [
+    {
+      "name": "project-binding",
+      "result": "pass",
+      "real_production_cli": true
+    },
+    {
+      "name": "guarded-merge",
+      "result": "pass",
+      "real_production_cli": true
+    },
+    {
+      "name": "brief-binding",
+      "result": "pass",
+      "real_production_cli": true
+    },
+    {
+      "name": "forge-detection",
+      "result": "pass",
+      "real_production_cli": true
+    },
+    {
+      "name": "teardown-gotmp",
+      "result": "pass",
+      "real_production_cli": true
+    },
+    {
+      "name": "pr-check-security",
+      "result": "pass",
+      "real_production_cli": true
+    }
+  ],
+  "external_api": "explicit loopback protocol fixture, not a deployed GitLab server",
+  "native_glab_git_bash_jq_tmux": true,
+  "owned_fixture_removed": true,
+  "shared_daemon_or_real_project_writes": false
+}

@@ -1,0 +1,817 @@
+[
+  {
+    "label": "create-marked-lab",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-lab-home.sh",
+      "create",
+      "/tmp/fm-gitlab-live-2xa06471/lab"
+    ],
+    "exit": 0,
+    "stdout": "/tmp/fm-gitlab-live-2xa06471/lab\n",
+    "stderr": ""
+  },
+  {
+    "label": "origin-init",
+    "argv": [
+      "git",
+      "init",
+      "--bare",
+      "-q",
+      "/tmp/fm-gitlab-live-2xa06471/origin.git"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "origin-main",
+    "argv": [
+      "git",
+      "--git-dir",
+      "/tmp/fm-gitlab-live-2xa06471/origin.git",
+      "symbolic-ref",
+      "HEAD",
+      "refs/heads/main"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "seed-clone",
+    "argv": [
+      "git",
+      "clone",
+      "-q",
+      "/tmp/fm-gitlab-live-2xa06471/origin.git",
+      "/tmp/fm-gitlab-live-2xa06471/seed"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "warning: You appear to have cloned an empty repository.\n"
+  },
+  {
+    "label": "seed-add",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/seed",
+      "add",
+      "fixture.txt"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "seed-commit",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/seed",
+      "-c",
+      "user.name=Fixture",
+      "-c",
+      "user.email=fixture@example.invalid",
+      "commit",
+      "-qm",
+      "fixture"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "seed-publish-local",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/seed",
+      "push",
+      "-q",
+      "origin",
+      "HEAD:main"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "project-clone",
+    "argv": [
+      "git",
+      "clone",
+      "-q",
+      "/tmp/fm-gitlab-live-2xa06471/origin.git",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "fixture-head",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit": 0,
+    "stdout": "f1f66112714e97af84f8d7e067730145c37b8368\n",
+    "stderr": ""
+  },
+  {
+    "label": "fixture-branch",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample",
+      "switch",
+      "-qc",
+      "fm/fixture"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "fixture-publish-ref",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample",
+      "update-ref",
+      "refs/remotes/origin/fm/fixture",
+      "f1f66112714e97af84f8d7e067730145c37b8368"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "gitlab-identity",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample",
+      "remote",
+      "set-url",
+      "origin",
+      "https://gitlab.example.com/group/project.git"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "fixture-url-rewrite",
+    "argv": [
+      "git",
+      "config",
+      "--file",
+      "/tmp/fm-gitlab-live-2xa06471/gitconfig",
+      "url.file:///tmp/fm-gitlab-live-2xa06471/origin.git.insteadOf",
+      "https://gitlab.example.com/group/project.git"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "real-glab-version",
+    "argv": [
+      "glab",
+      "version"
+    ],
+    "exit": 0,
+    "stdout": "glab 1.114.0 ()\n",
+    "stderr": ""
+  },
+  {
+    "label": "real-glab-read",
+    "argv": [
+      "glab",
+      "mr",
+      "view",
+      "7",
+      "--repo",
+      "https://gitlab.example.com/group/project",
+      "--output",
+      "json"
+    ],
+    "exit": 0,
+    "stdout": "{\"id\":7,\"iid\":7,\"target_branch\":\"main\",\"source_branch\":\"fm/fixture\",\"project_id\":42,\"title\":\"Disposable CLI fixture\",\"state\":\"opened\",\"imported\":false,\"imported_from\":\"\",\"created_at\":null,\"updated_at\":null,\"upvotes\":0,\"downvotes\":0,\"author\":{\"id\":1,\"username\":\"fixture\",\"name\":\"Fixture\",\"state\":\"\",\"created_at\":null,\"avatar_url\":\"\",\"web_url\":\"\"},\"assignee\":null,\"assignees\":null,\"reviewers\":null,\"source_project_id\":0,\"target_project_id\":0,\"labels\":null,\"label_details\":null,\"description\":\"Disposable fixture\",\"draft\":false,\"milestone\":null,\"merge_when_pipeline_succeeds\":false,\"detailed_merge_status\":\"mergeable\",\"merge_user\":null,\"merged_at\":null,\"merge_after\":null,\"prepared_at\":null,\"closed_by\":null,\"closed_at\":null,\"sha\":\"f1f66112714e97af84f8d7e067730145c37b8368\",\"merge_commit_sha\":\"\",\"squash_commit_sha\":\"\",\"user_notes_count\":0,\"should_remove_source_branch\":false,\"force_remove_source_branch\":false,\"allow_collaboration\":false,\"allow_maintainer_to_push\":false,\"web_url\":\"https://gitlab.example.com/group/project/-/merge_requests/7\",\"references\":null,\"discussion_locked\":false,\"time_stats\":null,\"squash\":false,\"squash_on_merge\":false,\"task_completion_status\":null,\"has_conflicts\":false,\"blocking_discussions_resolved\":true,\"merged_by\":null,\"merge_error\":\"\",\"subscribed\":false,\"changes_count\":\"\",\"user\":{\"can_merge\":true},\"latest_build_started_at\":null,\"latest_build_finished_at\":null,\"first_deployed_to_production_at\":null,\"pipeline\":null,\"head_pipeline\":null,\"diff_refs\":{\"base_sha\":\"\",\"head_sha\":\"\",\"start_sha\":\"\"},\"rebase_in_progress\":false,\"diverged_commits_count\":0,\"first_contribution\":false,\"work_in_progress\":false}\n",
+    "stderr": ""
+  },
+  {
+    "label": "binding-direct-PR",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-project-mode.sh",
+      "sample"
+    ],
+    "exit": 0,
+    "stdout": "direct-PR on\n",
+    "stderr": ""
+  },
+  {
+    "label": "binding-forge-direct-PR",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-project-mode.sh",
+      "--forge",
+      "sample"
+    ],
+    "exit": 0,
+    "stdout": "gitlab\n",
+    "stderr": ""
+  },
+  {
+    "label": "binding-no-mistakes",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-project-mode.sh",
+      "sample"
+    ],
+    "exit": 0,
+    "stdout": "no-mistakes on\n",
+    "stderr": ""
+  },
+  {
+    "label": "binding-forge-no-mistakes",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-project-mode.sh",
+      "--forge",
+      "sample"
+    ],
+    "exit": 0,
+    "stdout": "gitlab\n",
+    "stderr": ""
+  },
+  {
+    "label": "local-only-forge-refused",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-project-mode.sh",
+      "sample"
+    ],
+    "exit": 3,
+    "stdout": "",
+    "stderr": "refused: sample is registered local-only with forge=gitlab in /tmp/fm-gitlab-live-2xa06471/lab/data/projects.md; local-only publishes nothing, so a forge has no meaning there, and its landing would fast-forward local main with content the review server has never seen; register no-mistakes or direct-PR to publish through the forge, or drop the forge token to keep the project local\n"
+  },
+  {
+    "label": "merge-sync",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-0",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 0,
+    "stdout": "armed: state/handoff-merge-0.check.sh\n\u2713 Merged!\nhttps://gitlab.example.com/group/project/-/merge_requests/7\n",
+    "stderr": "\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nverified: https://gitlab.example.com/group/project/-/merge_requests/7 is open and mergeable at head f1f66112714e97af84f8d7e067730145c37b8368; it has no head pipeline, and the project does not require one\n"
+  },
+  {
+    "label": "merge-required-absence",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-1",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-merge-1.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: refusing to merge https://gitlab.example.com/group/project/-/merge_requests/7\n  - the project requires pipelines to succeed, but the merge request has no head pipeline\n"
+  },
+  {
+    "label": "merge-required-success",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-2",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 0,
+    "stdout": "armed: state/handoff-merge-2.check.sh\n\u2713 Merged!\nhttps://gitlab.example.com/group/project/-/merge_requests/7\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nverified: https://gitlab.example.com/group/project/-/merge_requests/7 is open and mergeable, with a successful pipeline at head f1f66112714e97af84f8d7e067730145c37b8368\n"
+  },
+  {
+    "label": "merge-failed",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-3",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-merge-3.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: refusing to merge https://gitlab.example.com/group/project/-/merge_requests/7\n  - the head pipeline status is \"failed\", not success\n"
+  },
+  {
+    "label": "merge-running",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-4",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-merge-4.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: refusing to merge https://gitlab.example.com/group/project/-/merge_requests/7\n  - the head pipeline status is \"running\", not success\n"
+  },
+  {
+    "label": "merge-stale",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-5",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-merge-5.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: refusing to merge https://gitlab.example.com/group/project/-/merge_requests/7\n  - the head pipeline ran at \"cccccccccccccccccccccccccccccccccccccccc\", not at the current head f1f66112714e97af84f8d7e067730145c37b8368\n"
+  },
+  {
+    "label": "merge-draft",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-6",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-merge-6.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: refusing to merge https://gitlab.example.com/group/project/-/merge_requests/7\n  - draft is \"true\", not boolean false\n"
+  },
+  {
+    "label": "merge-changed-head",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-7",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-merge-7.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nverified: https://gitlab.example.com/group/project/-/merge_requests/7 is open and mergeable at head f1f66112714e97af84f8d7e067730145c37b8368; it has no head pipeline, and the project does not require one\n          \n   ERROR  \n          \n  All attempts fail:                                                                                                  \n  #1: PUT http://127.0.0.1:44569/api/v4/projects/group%2Fproject/merge_requests/7/merge: 409 {message: source SHA     \n  changed}.                                                                                                           \n"
+  },
+  {
+    "label": "merge-async",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-8",
+      "https://gitlab.example.com/group/project/-/merge_requests/7",
+      "--",
+      "--auto-merge=true"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "error: extra merge arguments must not request auto-merge; pass --attended-override only for an explicit captain instruction\n"
+  },
+  {
+    "label": "merge-legacy-async",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-9",
+      "https://gitlab.example.com/group/project/-/merge_requests/7",
+      "--",
+      "--when-pipeline-succeeds"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "error: extra merge arguments must not request auto-merge, a protection bypass, or branch deletion; pass --attended-override only for an explicit captain instruction\n"
+  },
+  {
+    "label": "merge-post-open",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-10",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-merge-10.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nverified: https://gitlab.example.com/group/project/-/merge_requests/7 is open and mergeable at head f1f66112714e97af84f8d7e067730145c37b8368; it has no head pipeline, and the project does not require one\nerror: GitLab accepted the merge request for https://gitlab.example.com/group/project/-/merge_requests/7 but it reads back as state=opened, not merged; no landed outcome is proven and the merge poll remains armed\nerror: the merge command's own output follows, quoted; it is the forge CLI's report, not this script's verdict:\nerror: > \u2713 Merged!\nerror: > https://gitlab.example.com/group/project/-/merge_requests/7\n"
+  },
+  {
+    "label": "merge-post-closed",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-11",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-merge-11.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nverified: https://gitlab.example.com/group/project/-/merge_requests/7 is open and mergeable at head f1f66112714e97af84f8d7e067730145c37b8368; it has no head pipeline, and the project does not require one\nerror: GitLab accepted the merge request for https://gitlab.example.com/group/project/-/merge_requests/7 but it reads back as state=closed, not merged; no landed outcome is proven and the merge poll remains armed\nerror: the merge command's own output follows, quoted; it is the forge CLI's report, not this script's verdict:\nerror: > \u2713 Merged!\nerror: > https://gitlab.example.com/group/project/-/merge_requests/7\n"
+  },
+  {
+    "label": "merge-post-unreadable",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-merge-12",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-merge-12.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nverified: https://gitlab.example.com/group/project/-/merge_requests/7 is open and mergeable at head f1f66112714e97af84f8d7e067730145c37b8368; it has no head pipeline, and the project does not require one\nerror: GitLab accepted the merge request for https://gitlab.example.com/group/project/-/merge_requests/7 but its landed state could not be confirmed; the merge poll remains armed\nerror: the merge command's own output follows, quoted; it is the forge CLI's report, not this script's verdict:\nerror: > \u2713 Merged!\nerror: > https://gitlab.example.com/group/project/-/merge_requests/7\n"
+  },
+  {
+    "label": "brief-direct-PR",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-brief.sh",
+      "handoff-brief-direct-pr",
+      "sample",
+      "--mode",
+      "direct-PR",
+      "--forge",
+      "gitlab"
+    ],
+    "exit": 0,
+    "stdout": "scaffolded: /tmp/fm-gitlab-live-2xa06471/lab/data/handoff-brief-direct-pr/brief.md (ship, mode=direct-PR forge=gitlab; replace {TASK} and {FIRSTMATE_SPEC})\n",
+    "stderr": ""
+  },
+  {
+    "label": "brief-no-mistakes",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-brief.sh",
+      "handoff-brief-no-mistakes",
+      "sample",
+      "--mode",
+      "no-mistakes",
+      "--forge",
+      "gitlab"
+    ],
+    "exit": 0,
+    "stdout": "scaffolded: /tmp/fm-gitlab-live-2xa06471/lab/data/handoff-brief-no-mistakes/brief.md (ship, mode=no-mistakes forge=gitlab; replace {TASK} and {FIRSTMATE_SPEC})\n",
+    "stderr": ""
+  },
+  {
+    "label": "mismatched-brief-create",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-brief.sh",
+      "handoff-mismatch",
+      "sample",
+      "--mode",
+      "direct-PR"
+    ],
+    "exit": 0,
+    "stdout": "scaffolded: /tmp/fm-gitlab-live-2xa06471/lab/data/handoff-mismatch/brief.md (ship, mode=direct-PR; replace {TASK} and {FIRSTMATE_SPEC})\n",
+    "stderr": ""
+  },
+  {
+    "label": "binding-mismatch-refusal",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-spawn.sh",
+      "handoff-mismatch",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample",
+      "claude",
+      "--mode",
+      "direct-PR",
+      "--yolo",
+      "off",
+      "--backend",
+      "tmux"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-gitlab-live-2xa06471/lab\nWARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: forge mismatch for handoff-mismatch: sample is registered forge=gitlab but /tmp/fm-gitlab-live-2xa06471/lab/data/handoff-mismatch/brief.md records forge=none; keep the filled ## Captain's intent and ## Firstmate spec bodies, remove /tmp/fm-gitlab-live-2xa06471/lab/data/handoff-mismatch/brief.md, re-scaffold it with fm-brief.sh handoff-mismatch sample --mode direct-PR --forge gitlab, then re-fill those two subsections, so the worker's publication matches the project's forge\n"
+  },
+  {
+    "label": "detect-gitlab-host",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-forge-detect.sh",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample"
+    ],
+    "exit": 0,
+    "stdout": "forge=gitlab evidence=origin host gitlab.example.com names GitLab\n",
+    "stderr": ""
+  },
+  {
+    "label": "custom-origin",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample",
+      "remote",
+      "set-url",
+      "origin",
+      "https://custom.example.com/group/project.git"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "detect-configured-host",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-forge-detect.sh",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample"
+    ],
+    "exit": 0,
+    "stdout": "forge=gitlab evidence=origin host custom.example.com is configured in glab (/tmp/fm-gitlab-live-2xa06471/glab/config.yml)\n",
+    "stderr": ""
+  },
+  {
+    "label": "restore-gitlab-origin",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/lab/projects/sample",
+      "remote",
+      "set-url",
+      "origin",
+      "https://gitlab.example.com/group/project.git"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "private-tmux-dir",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-lab-home.sh",
+      "tmux-dir",
+      "/tmp/fm-gitlab-live-2xa06471/lab"
+    ],
+    "exit": 0,
+    "stdout": "/tmp/fml.1c6Es6\n",
+    "stderr": ""
+  },
+  {
+    "label": "private-tmux-start",
+    "argv": [
+      "tmux",
+      "-S",
+      "/tmp/fml.1c6Es6/handoff.sock",
+      "new-session",
+      "-d",
+      "-s",
+      "handoff",
+      "-n",
+      "keeper",
+      "sleep",
+      "600"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "private-tmux-pid",
+    "argv": [
+      "tmux",
+      "-S",
+      "/tmp/fml.1c6Es6/handoff.sock",
+      "display-message",
+      "-p",
+      "#{pid}"
+    ],
+    "exit": 0,
+    "stdout": "187775\n",
+    "stderr": ""
+  },
+  {
+    "label": "unlanded-clone",
+    "argv": [
+      "git",
+      "clone",
+      "-q",
+      "/tmp/fm-gitlab-live-2xa06471/origin.git",
+      "/tmp/fm-gitlab-live-2xa06471/unlanded-clone"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "unlanded-branch",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/unlanded-clone",
+      "switch",
+      "-qc",
+      "fm/unlanded"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "unlanded-add",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/unlanded-clone",
+      "add",
+      "unlanded.txt"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "unlanded-commit",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/unlanded-clone",
+      "-c",
+      "user.name=Fixture",
+      "-c",
+      "user.email=fixture@example.invalid",
+      "commit",
+      "-qm",
+      "unlanded"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "unlanded-origin",
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/fm-gitlab-live-2xa06471/unlanded-clone",
+      "remote",
+      "set-url",
+      "origin",
+      "https://gitlab.example.com/group/project.git"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "unlanded-window",
+    "argv": [
+      "tmux",
+      "-S",
+      "/tmp/fml.1c6Es6/handoff.sock",
+      "new-window",
+      "-d",
+      "-t",
+      "handoff",
+      "-n",
+      "fm-handoff-unlanded",
+      "sleep",
+      "600"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "unlanded-teardown-refusal",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-teardown.sh",
+      "handoff-unlanded"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-gitlab-live-2xa06471/lab\nWARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nREFUSED: worktree /tmp/fm-gitlab-live-2xa06471/unlanded-clone has work not on any remote and not landed.\nunpushed commits:\nf9fe6a0 unlanded\nPush the branch, land its PR, or get the captain's explicit OK to discard, then --force.\n"
+  },
+  {
+    "label": "gotmp-marked-lab",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-lab-home.sh",
+      "create",
+      "/tmp/fm-gitlab-live-2xa06471/gotmp-lab"
+    ],
+    "exit": 0,
+    "stdout": "/tmp/fm-gitlab-live-2xa06471/gotmp-lab\n",
+    "stderr": ""
+  },
+  {
+    "label": "gotmp-window",
+    "argv": [
+      "tmux",
+      "-S",
+      "/tmp/fml.1c6Es6/handoff.sock",
+      "new-window",
+      "-d",
+      "-t",
+      "handoff",
+      "-n",
+      "fm-handoff-gotmp",
+      "sleep",
+      "600"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "gotmp-real-teardown",
+    "argv": [
+      "bash",
+      "/tmp/fm-gitlab-live-2xa06471/gotmp-lab/bin/fm-teardown.sh",
+      "handoff-gotmp"
+    ],
+    "exit": 0,
+    "stdout": "teardown handoff-gotmp complete (window handoff:fm-handoff-gotmp, worktree /tmp/fm-gitlab-live-2xa06471/missing-copy)\nBacklog: handoff-gotmp just finished (config/backlog-backend selects manual editing). Update /tmp/fm-gitlab-live-2xa06471/gotmp-lab/data/backlog.md - move handoff-gotmp to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.\n",
+    "stderr": "fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-gitlab-live-2xa06471/gotmp-lab\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u25cf  WATCHER DOWN - SUPERVISION IS OFF\n\u25cf  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).\n\u25cf  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.\n\u25cf  This is a supervision warning only; the guarded operation WILL still run.\n\u25cf  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.\n\u25cf\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n/tmp/fm-gitlab-live-2xa06471/gotmp-lab/bin/fm-teardown.sh: line 3752: /tmp/fm-gitlab-live-2xa06471/gotmp-lab/bin/fm-remote-job-reap-orphans.sh: No such file or directory\n"
+  },
+  {
+    "label": "draft-ready-refused",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-check.sh",
+      "handoff-ready",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "error: https://gitlab.example.com/group/project/-/merge_requests/7 is a draft merge request; a draft cannot be merged - mark it ready for review and arm again, or declare a wait instead of done if the draft is deliberate\n"
+  },
+  {
+    "label": "ready-registration",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-check.sh",
+      "handoff-ready",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 0,
+    "stdout": "armed: state/handoff-ready.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\n"
+  },
+  {
+    "label": "raw-api-missing-draft",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-raw-0",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-raw-0.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: refusing to merge https://gitlab.example.com/group/project/-/merge_requests/7\n  - draft is \"unreadable\", not boolean false\n"
+  },
+  {
+    "label": "raw-api-null-draft",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-raw-1",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-raw-1.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: refusing to merge https://gitlab.example.com/group/project/-/merge_requests/7\n  - draft is \"unreadable\", not boolean false\n"
+  },
+  {
+    "label": "raw-api-string-draft",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-raw-2",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-raw-2.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: refusing to merge https://gitlab.example.com/group/project/-/merge_requests/7\n  - draft is \"unreadable\", not boolean false\n"
+  },
+  {
+    "label": "raw-api-missing-pipeline",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-merge.sh",
+      "handoff-raw-3",
+      "https://gitlab.example.com/group/project/-/merge_requests/7"
+    ],
+    "exit": 1,
+    "stdout": "armed: state/handoff-raw-3.check.sh\n",
+    "stderr": "WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.\nWARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.\nerror: refusing to merge https://gitlab.example.com/group/project/-/merge_requests/7\n  - the head pipeline status is \"none\", not success\n  - the head pipeline ran at \"none\", not at the current head f1f66112714e97af84f8d7e067730145c37b8368\n"
+  },
+  {
+    "label": "unsafe-url-refused",
+    "argv": [
+      "bash",
+      "/home/dimas/.no-mistakes/worktrees/a38bb9f09f5e/01M4XGFEGNE1XG4GQYD7FZBDPV/bin/fm-pr-check.sh",
+      "handoff-unsafe",
+      "https://gitlab.example.com/group/project/-/merge_requests/7?ambiguous=1"
+    ],
+    "exit": 2,
+    "stdout": "",
+    "stderr": "error: invalid PR check request\n"
+  }
+]
